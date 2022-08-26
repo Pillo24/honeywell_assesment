@@ -1,10 +1,12 @@
 import React from 'react';
+import useForm from '../../resources/hooks/useForm';
 
-const FormSignup = () => {
-  
+const FormSignup = ({ submitForm }) => {
+  const { handleChange, handleSubmit, values} = useForm(submitForm);
+
   return (
     <div>
-      <form noValidate>
+      <form onSubmit={handleSubmit} noValidate>
         <h1>
           Register
         </h1>
@@ -14,6 +16,8 @@ const FormSignup = () => {
             type='text'
             name='username'
             placeholder='Enter your username'
+            value={values.username}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -22,6 +26,8 @@ const FormSignup = () => {
             type='email'
             name='email'
             placeholder='Enter your email'
+            value={values.email}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -30,6 +36,8 @@ const FormSignup = () => {
             type='password'
             name='password'
             placeholder='Enter your password'
+            value={values.password}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -38,6 +46,8 @@ const FormSignup = () => {
             type='password'
             name='password2'
             placeholder='Confirm your password'
+            value={values.password2}
+            onChange={handleChange}
           />
         </div>
         <button type='submit'>
