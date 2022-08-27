@@ -1,5 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react';
 import validateInfo from '../state/validateInfo';
+import useLocalStorage from '../resources/hooks/useLocalStorage';
 
 const DataContext = createContext()
 
@@ -11,6 +12,10 @@ const initialState = {
 }; 
 
 const DataProvider = ({children}) => {
+    const {
+        item, 
+        saveUser, 
+    } = useLocalStorage('USERS', []);
 
    const [values, setValues] = useState(initialState); 
    const [errors, setErrors] = useState({});
@@ -24,7 +29,9 @@ const DataProvider = ({children}) => {
         ...values,
         [name]: value
       });
+      saveUser(values)
    };
+   
       
     const handleSubmit = (e) => {
         e.preventDefault();
