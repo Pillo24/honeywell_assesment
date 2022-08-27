@@ -1,14 +1,13 @@
-import React from 'react';
-import useForm from '../../resources/hooks/useForm';
-import validateInfo from '../../state/validateInfo';
+import React, { useContext } from 'react';
+import { DataContext } from '../../state/dataContext';
 
-const FormSignup = ({submitForm}) => {
-  const { 
-    handleChange, 
+const FormSignup = () => {
+  const {
     handleSubmit, 
+    handleChange, 
     values, 
     errors
-  } = useForm(submitForm,validateInfo);
+  } = useContext(DataContext);
 
   return (
     <div>
