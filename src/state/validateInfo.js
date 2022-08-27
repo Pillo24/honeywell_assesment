@@ -9,7 +9,6 @@ const validateInfo = (values) => {
     if (!values.username) {
       errors.username = 'Username required';
     } else if(!username_RGX.test(values.username)){
-      console.log('Enter a valid name' ); //true
       errors.username = 'Enter a valid name';
     }
 
