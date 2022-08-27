@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import { DataContext } from '../state/dataContext';
+import Login from '../views/Login';
 import Singup from '../views/Singup';
 
 const Form = () => {
@@ -12,6 +13,8 @@ const Form = () => {
         : 
         <Singup />
       }
+
+      <Login />
     </>
   )
 };
