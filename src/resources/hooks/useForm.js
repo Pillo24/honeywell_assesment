@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useForm = () => {
+const useForm = (validateInfo) => {
   
   const initialState = {
     username: '',
@@ -22,7 +22,8 @@ const useForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
+    setErrors(validateInfo(values));
     console.log(values);
   };
 
