@@ -16,7 +16,7 @@ const FormSignup = () => {
           Register
         </h1>
         <div>
-          <label>Username</label>
+          <label>Name</label>
           <input
             type='text'
             name='username'

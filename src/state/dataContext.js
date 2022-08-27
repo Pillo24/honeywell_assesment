@@ -12,7 +12,7 @@ const userData = {
 }; 
 
 const DataProvider = ({children}) => {
-    const { item, saveUser } = useLocalStorage();
+    const { item, saveUser } = useLocalStorage('USERS', []);
 
    const [newUser, setNewUser] = useState(userData); 
    const [values, setValues] = useState([]); 
@@ -59,7 +59,8 @@ const DataProvider = ({children}) => {
         handleChange, 
         handleSubmit, 
         values, 
-        errors
+        errors,
+        item
     }}>
       {children}
     </DataContext.Provider>
