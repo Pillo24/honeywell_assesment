@@ -2,13 +2,13 @@ import React from 'react';
 import useForm from '../../resources/hooks/useForm';
 import validateInfo from '../../state/validateInfo';
 
-const FormSignup = () => {
+const FormSignup = ({submitForm}) => {
   const { 
     handleChange, 
     handleSubmit, 
     values, 
     errors
-  } = useForm(validateInfo);
+  } = useForm(submitForm,validateInfo);
 
   return (
     <div>
