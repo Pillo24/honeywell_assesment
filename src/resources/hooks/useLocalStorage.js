@@ -1,15 +1,16 @@
 import { useState, useEffect }  from 'react';
 
-const useLocalStorage = (itemName, initialValue) => {
-    const [item, setItem] = useState(initialValue);
-  
+const useLocalStorage = () => {
+    const [item, setItem] = useState([]);
+    const users = 'USERS';
+
     useEffect(()=>{
-        const localStorageItem = localStorage.getItem(itemName);
+        const localStorageItem = localStorage.getItem(users);
         let parsedItem;
   
         if (!localStorageItem) {
-            localStorage.setItem(itemName, JSON.stringify(initialValue));
-            parsedItem = initialValue;
+            localStorage.setItem(users, JSON.stringify([]));
+            parsedItem = [];
         } else {
             parsedItem = JSON.parse(localStorageItem);
         }
@@ -20,7 +21,7 @@ const useLocalStorage = (itemName, initialValue) => {
   
     const saveUser = (newItem) => {
         const stringifedItem = JSON.stringify(newItem);
-        localStorage.setItem(itemName, stringifedItem);
+        localStorage.setItem(users, stringifedItem);
         setItem(newItem);
     }
   

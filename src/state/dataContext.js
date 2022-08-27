@@ -4,47 +4,51 @@ import useLocalStorage from '../resources/hooks/useLocalStorage';
 
 const DataContext = createContext()
 
-const initialState = {
+const userData = {
     username: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
 }; 
 
 const DataProvider = ({children}) => {
-    const {
-        item, 
-        saveUser, 
-    } = useLocalStorage('USERS', []);
+    const { item, saveUser } = useLocalStorage();
 
-   const [values, setValues] = useState(initialState); 
+   const [newUser, setNewUser] = useState(userData); 
+   const [values, setValues] = useState([]); 
+
    const [errors, setErrors] = useState({});
    const [onSubmit, setOnSubmit] = useState(false);
    const [onSuccess, setOnSuccess] = useState(false);
 
-
    const handleChange = (e)=> {
       const { name, value } = e.target;
-      setValues({
-        ...values,
+      setNewUser({
+        ...newUser,
         [name]: value
       });
-      saveUser(values)
    };
-   
       
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const validate = validateInfo(values);
+        const validate = validateInfo(newUser);
         setErrors(validate);
+
+        const newItem = [...item]
+        !!item && setValues([...newItem, newUser]);
 
         setOnSubmit(true);
     };
 
+    useEffect(()=> {
+        console.log("LocalStorage",item);
+    },[item]);
+
     useEffect(() => {
         if (Object.keys(errors).length === 0 && onSubmit) {
             setOnSuccess(true);
+            saveUser(values);
         }
     },[errors]);
 
