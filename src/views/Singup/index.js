@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../../state/dataContext';
+import Form from '../../components/Form';
 
 const FormSignup = () => {
   const {
@@ -10,10 +11,10 @@ const FormSignup = () => {
   } = useContext(DataContext);
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
-      <h1>
-        Register
-      </h1>
+    <Form 
+    title='Register'
+    onSubmit={handleSubmit}
+    >
       <div>
         <label>Name</label>
         <input
@@ -64,7 +65,7 @@ const FormSignup = () => {
       <span>
         Already have an account? Login <a href='#'>here</a>
       </span>
-    </form>
+    </Form>
   );
 };
 
