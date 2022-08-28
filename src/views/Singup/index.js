@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../../state/dataContext';
 import Form from '../../components/Form';
+import Input from '../../components/Input';
 
 const FormSignup = () => {
   const {
@@ -15,53 +16,47 @@ const FormSignup = () => {
     title='Register'
     onSubmit={handleSubmit}
     >
-      <div>
-        <label>Name</label>
-        <input
-          type='text'
-          name='username'
-          placeholder='Enter your username'
-          value={values.username}
-          onChange={handleChange}
-        />
-        {!!errors.username && <p>{errors.username}</p>}
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='email'
-          name='email'
-          placeholder='Enter your email'
-          value={values.email}
-          onChange={handleChange}
-        />
-        {!!errors.email && <p>{errors.email}</p>}
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          placeholder='Enter your password'
-          value={values.password}
-          onChange={handleChange}
-        />
-        {!!errors.password && <p>{errors.password}</p>}
-      </div>
-      <div>
-        <label>Confirm Password</label>
-        <input
-          type='password'
-          name='password2'
-          placeholder='Confirm your password'
-          value={values.password2}
-          onChange={handleChange}
-        />
-        {!!errors.password2 && <p>{errors.password2}</p>}
-      </div>
+
+      <Input 
+      type='text'
+      name='username'
+      placeholder='Enter your username'
+      value={values.username} 
+      onChange={handleChange}
+      errors={errors.username}
+      />
+
+      <Input 
+      type='email'
+      name='email'
+      placeholder='Enter your email'
+      value={values.email}
+      onChange={handleChange}
+      errors={errors.email}
+      />
+
+      <Input 
+      type='password'
+      name='password'
+      placeholder='Enter your password'
+      value={values.password}
+      onChange={handleChange}
+      errors={errors.password}
+      /> 
+
+      <Input 
+      type='password'
+      name='password2'
+      placeholder='Confirm your password'
+      value={values.password2}
+      onChange={handleChange}
+      errors={errors.password2}
+      /> 
+
       <button type='submit'>
         Sign up
       </button>
+      
       <span>
         Already have an account? Login <a href='#'>here</a>
       </span>

@@ -1,51 +1,37 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const Container = styled.form`
-    display: grid;
-    align-items: center;
-    justify-items: center;
-
+const FormContainer = styled.form`
     height: 500px;
-    width: 90%;
+    width: 100%;
     border-radius: 10%;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
-
-    background: var(--light);
-    background: linear-gradient(30deg, var(--secondary) 0%, var(--main) 40%, var(--light) 85%, var(--secondary) 100%);
-
+    background: ${({login})=>(!!login ? 'var(--primary_light)' : 'var(--mid_light)')};
     color: var(--white);
 
-
-    @media (prefers-reduced-motion: no-preference) {
-        & {
-            animation: Fade-in 0.6s ease-out;
-        }
-    }
-
-    @keyframes Fade-in {
-        from {
-            margin-left: -120%;
-        }
-        to {
-            margin-left: 0;
-        }
-    }
+    display: grid;
+    grid-template-rows: 150px auto;
+    justify-items: center;
+    align-items: center;
 `;
-const FormContainer = styled.form`
-    /* background: var(--black); */
+
+const InputContainer = styled.div`
+    display: grid;
+    background: var(--black);
+    align-items: center;
+    justify-items: center; 
 `;
 
 
 
-const Form = ({onSubmit, title, children}) => {
+const Form = ({onSubmit, title, login, children}) => {
   return (
-    <Container>
-        <h1>{title}</h1>
-        <FormContainer onSubmit={onSubmit} noValidate>
-        <div>{children}</div>
-        </FormContainer>
-    </Container>
+    <FormContainer onSubmit={onSubmit} login={login} noValidate>
+         <h1>{title}</h1>
+        <InputContainer>
+            {children}
+        </InputContainer>
+    </FormContainer>
   )
 }
 

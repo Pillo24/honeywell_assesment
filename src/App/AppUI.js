@@ -4,8 +4,11 @@ import Login from '../views/Login';
 import Singup from '../views/Singup';
 import Success from '../views/Success';
 import {
-  light, 
-  Background,
+  light,
+  gra1,
+  gra2,
+  gra3,
+  gra4, 
   Layout,
   AnimateFruit,
   CardContainer 
@@ -15,21 +18,34 @@ import PinkFruit from '../resources/assets/pinkfruit.png';
 const AppUI = () => {
   const { onSuccess, view } = useContext(DataContext);
   
+  const gradient = gra2;
+  const theme = light;
+
   return(
-    <Background>
-      <Layout style={light}>
+      <Layout style={theme}>
         <AnimateFruit>
-          <img src={PinkFruit} alt='pinfruit'/>
+          <img 
+          className='left'
+          src={PinkFruit} 
+          alt='pinfruit'
+          />
         </AnimateFruit>
 
-        <CardContainer>  
+        <CardContainer style={gradient}>  
           {!!onSuccess ? <Success />
             : 
           (!!view ? <Login /> : <Singup /> ) 
           }
         </CardContainer>
+
+        <AnimateFruit>
+          <img 
+          className='right'
+          src={PinkFruit} 
+          alt='pinfruit'
+          />
+        </AnimateFruit>
       </Layout>
-    </Background>
   )
 };
 
