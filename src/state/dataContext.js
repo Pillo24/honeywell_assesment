@@ -4,17 +4,10 @@ import useLocalStorage from '../resources/hooks/useLocalStorage';
 
 const DataContext = createContext()
 
-const userData = {
-    username: '',
-    email: '',
-    password: '',
-    password2: '',
-}; 
-
 const DataProvider = ({children}) => {
    const { item, saveUser } = useLocalStorage('USERS', []);
 
-   const [newUser, setNewUser] = useState(userData); 
+   const [newUser, setNewUser] = useState({}); 
    const [values, setValues] = useState([]); 
 
    const [errors, setErrors] = useState({});
@@ -39,7 +32,7 @@ const DataProvider = ({children}) => {
         const newItem = [...item]
         !!item && setValues([...newItem, newUser]);
 
-        if (Object.keys(validate).length === 0 && newItem > 4) {
+        if (Object.keys(newUser).length === 4) {
           setOnSubmit(true);
         }
     };
