@@ -12,7 +12,7 @@ const userData = {
 }; 
 
 const DataProvider = ({children}) => {
-    const { item, saveUser } = useLocalStorage('USERS', []);
+   const { item, saveUser } = useLocalStorage('USERS', []);
 
    const [newUser, setNewUser] = useState(userData); 
    const [values, setValues] = useState([]); 
@@ -105,8 +105,11 @@ const DataProvider = ({children}) => {
     useEffect(() => {
       if (Object.keys(errors).length === 0 && onSubmit) {
           console.log("SUCESS PAGE!!!")
+          setOnSuccess(true);
       }
   },[errors]);
+
+  const [view, setView] = useState(false);
 
   return (
     <DataContext.Provider value={{
@@ -115,6 +118,8 @@ const DataProvider = ({children}) => {
       handleSubmit,
       submitleLogin,
       validateLogin, 
+      setView,
+      view, 
       onSuccess,
       values, 
       errors,

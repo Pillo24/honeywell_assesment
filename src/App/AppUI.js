@@ -1,22 +1,20 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import { DataContext } from '../state/dataContext';
 import Login from '../views/Login';
 import Singup from '../views/Singup';
+import Success from '../views/Success';
 
-const Form = () => {
-  const { onSuccess } = useContext(DataContext);
-    
+const AppUI = () => {
+  const { onSuccess, view } = useContext(DataContext);
+  
   return(
     <>
-      {!!onSuccess ? 
-        <p>SUCCESSSSSSS</p>
+      {!!onSuccess ? <Success />
         : 
-        <Singup />
+      (!!view ? <Login /> : <Singup /> ) 
       }
-
-      <Login />
     </>
   )
 };
 
-export default Form;
+export default AppUI;
