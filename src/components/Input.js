@@ -1,10 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
+import { device } from '../resources/Theme';
 
 const Inputcontainer = styled.div`
-  width: 60%;
+  width: 350px;
   margin: 0 auto;
   margin-bottom: 30px;
+  
+    @media ${device.mobile} { 
+        width: 80%;
+    }
   
   input {
       width: 100%;

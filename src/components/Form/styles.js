@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../resources/Theme';
 
 const FormContainer = styled.form`
     height: 100%;
@@ -13,6 +14,10 @@ const FormContainer = styled.form`
     justify-items: center;
     align-items: end;
     padding-bottom: 60px;
+    
+    @media ${device.mobile} { 
+        border-radius: 0%;
+    }
 `;
 
 const InputContainer = styled.div`
@@ -81,10 +86,12 @@ const SubmitButton = styled.button`
 `;
 
 const LinkContainer = styled.span`
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     text-align: center;
     color: var(--white);
-    padding-top: 6px;
+    padding: 6px 5px 0 5px;
     font-size: 18px;
 `;
 const Link = styled.div`

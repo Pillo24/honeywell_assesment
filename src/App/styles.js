@@ -1,62 +1,33 @@
 import styled from "styled-components";
-import { color, bg1, bg2, bg3, bg4 } from "../resources/Theme";
+import { device } from "../resources/Theme";
 import Bg from '../resources/assets/bg_pink.jpg';
 
-const light = {
-    '--main': color.main,
-    '--primary': color.primary,
-    '--secondary': color.secondary,
-    '--mid': color.mid,
-    '--primary_light': color.primary_light,
-    '--mid_light': color.mid_light,
-    '--white': color.white,
-    '--black': color.black,
-    '--red': color.red,
-    '--green': color.green,
-}
-
-const gra1 = {
-    '--gradient': bg1.gradient,
-    '--gradient0': bg1.gradient0,
-    '--gradient25': bg1.gradient25,
-    '--gradient50': bg1.gradient50,
-    '--gradient75': bg1.gradient75,
-    '--gradient100': bg1.gradient100,
-}
-
-const gra3 = {
-    '--gradient': bg3.gradient,
-    '--gradient0': bg3.gradient0,
-    '--gradient25': bg3.gradient25,
-    '--gradient50': bg3.gradient50,
-    '--gradient75': bg3.gradient75,
-    '--gradient100': bg3.gradient100,
-}
-
-const gra4 = {
-    '--gradient': bg4.gradient,
-    '--gradient0': bg4.gradient0,
-    '--gradient25': bg4.gradient25,
-    '--gradient50': bg4.gradient50,
-    '--gradient75': bg4.gradient75,
-    '--gradient100': bg4.gradient100,
-}
-
 const Background = styled.div`
-    background-color: ${color.main};
+    background-color: var(--main);
     background-image:url(${Bg});
     background-repeat: no-repeat;
     background-size: cover; 
     width: 100%;
     min-height: 100vh;
+
+    @media ${device.laptop} { 
+   
+    }
 `;
 
 const Layout = styled(Background)`
     display: grid;
-    grid-template-columns: 25% 50% 25%;
+    grid-template-columns: 30% 40% 30%;
     align-items: center;
     justify-items: center;
     overflow: hidden;
+
+    @media ${device.tablet} { 
+        grid-template-columns: 30% 70%;
+    }
+    @media ${device.tabletM} { 
+        grid-template-columns: 100%;
+    }
 `;
 
 const AnimateFruit = styled.div `
@@ -72,7 +43,37 @@ const AnimateFruit = styled.div `
     .right{
         width: 100%;
     }
-
+    @media ${device.laptop} { 
+        .left {
+            width: calc(100% + 25vmin);
+            margin-top: calc(-100% - 65vmin);
+        }
+        .right{
+            margin-top: calc(100% + 30vmin);
+            margin-left: 20%;
+        }
+    }
+    @media ${device.tablet} { 
+        .left {
+            width: calc(100% + 25vmin);
+            margin-top: calc(-100% - 5vmin);
+        }
+        .right{
+            margin-top: calc(-110% - 75vmin);
+        }
+    }
+    @media ${device.tabletM} { 
+        .right{
+            margin-top: -20px;
+            width: calc(50% - 25vmin);
+            margin-left: -20px;
+        }
+    }
+    @media ${device.mobileL} { 
+        .right{
+            display: none;
+        }
+    }
 
 
     @media (prefers-reduced-motion: no-preference) {
@@ -92,8 +93,12 @@ const AnimateFruit = styled.div `
 `;
 
 const CardContainer = styled.div`
-    width: 90%;
+    width: 500px;
     margin: 0 auto;
+    
+    @media ${device.mobile} { 
+        width: 100%;
+    }
 
     @media (prefers-reduced-motion: no-preference) {
         & {
@@ -103,19 +108,15 @@ const CardContainer = styled.div`
 
     @keyframes Fade-in {
         from {
-            width: 20%;
+            width: 10%;
         }
         to {
-            width: 100%;
+            width: 80%;
         }
     }
 `;
 
 export {
-    light,
-    gra1,
-    gra3,
-    gra4,
     Layout,
     AnimateFruit,
     CardContainer

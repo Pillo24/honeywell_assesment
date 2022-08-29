@@ -3,16 +3,13 @@ import { DataContext } from '../state/dataContext';
 import Login from '../views/Login';
 import Singup from '../views/Singup';
 import Success from '../views/Success';
+import PinkFruit from '../resources/assets/pinkfruit.png';
+import {light, gra1, gra3, gra4} from '../resources/Theme';
 import {
-  light,
-  gra1,
-  gra3,
-  gra4, 
   Layout,
   AnimateFruit,
   CardContainer 
 } from './styles';
-import PinkFruit from '../resources/assets/pinkfruit.png';
 
 const AppUI = () => {
   const { onSuccess, view } = useContext(DataContext);
