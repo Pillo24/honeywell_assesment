@@ -14,16 +14,19 @@ import {
 } from './styles';
 
 const AppUI = () => {
-  const { onSuccess, view } = useContext(DataContext);
-  const [palette, setPalette] = useState(true);
-  const theme = !!palette ? light : dark;
+  const { 
+    onSuccess, 
+    view, 
+    setPalette,
+    palette
+  } = useContext(DataContext);
 
+  const theme = !!palette ? light : dark;
   const succes_gradient =theme.gradient.gra1;
   const gradient = !!view? theme.gradient.gra3 : theme.gradient.gra4;
 
   return(
     <AppContainer style={theme}>
-
       {!!onSuccess ? <Success gradient={succes_gradient}/>
         : 
         <Layout>

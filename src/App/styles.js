@@ -125,5 +125,5 @@ export {
     Layout,
     AnimateFruit,
     CardContainer,
-    AppContainer
+    AppContainer,
 };

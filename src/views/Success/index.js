@@ -7,6 +7,7 @@ import { device } from '../../resources/Theme';
 const Background = styled.div`
     background-image:url(${Bg});
     background-color:var(--primary);
+    filter: var(--filter);
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center;

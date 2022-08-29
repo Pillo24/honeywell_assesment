@@ -109,6 +109,9 @@ const DataProvider = ({children}) => {
   },[errors]);
 
   const [view, setView] = useState(false);
+
+  const [palette, setPalette] = useState(true);
+
   return (
     <DataContext.Provider value={{
       setOnSuccess,
@@ -117,11 +120,13 @@ const DataProvider = ({children}) => {
       submitleLogin,
       validateLogin, 
       setView,
+      setPalette,
       view, 
       onSuccess,
       values, 
       errors,
-      item
+      item,
+      palette
     }}>
       {children}
     </DataContext.Provider>
