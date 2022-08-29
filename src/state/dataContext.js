@@ -81,7 +81,6 @@ const DataProvider = ({children}) => {
         }
     };
   
-
     const validateLogin = (e)=> {
       const { name, value } = e.target;
 
