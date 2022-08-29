@@ -45,7 +45,7 @@ export default function SignupCard() {
         >
           <form>
             <Stack spacing={4}>
-              <HStack>
+              <HStack display={{ sm: "none", md: "flex" }}>
                 <Box>
                   <FormControl id="firstName" isRequired>
                     <FormLabel>First Name</FormLabel>
