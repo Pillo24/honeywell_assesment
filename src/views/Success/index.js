@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import styled from 'styled-components';
 import Bg from '../../resources/assets/bg_purple.jpg'
 import { DataContext } from '../../state/dataContext';
+import { device } from '../../resources/Theme';
 
 const Background = styled.div`
     background-image:url(${Bg});
@@ -21,6 +22,10 @@ const Title = styled.h1`
     font-weight: 600;
     padding: 20px;
     color: var(--secondary);
+
+    @media ${device.mobileS} { 
+        padding: 0 0 20px 0;
+    }
 `;
 
 const HomeButton = styled.div`
@@ -32,8 +37,11 @@ const HomeButton = styled.div`
     padding: 10px 40px;
     width: 200px;
     margin: 0 auto;
-
     cursor: pointer;
+
+    @media ${device.mobileS} { 
+        width: 180px;
+    }
 
 
 @media (prefers-reduced-motion: no-preference) {
@@ -86,6 +94,11 @@ const Card = styled.div`
   text-align: center;
   border-radius: 20px;
   padding: 20px 10px 50px 10px;
+
+  @media ${device.mobile} { 
+        border-radius: 0%;
+        padding: 20px 0px 50px 0px;
+    }
 `;
 
 const Success = ({gradient}) => {
