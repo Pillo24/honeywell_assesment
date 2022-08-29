@@ -40,8 +40,8 @@ const SubmitButton = styled.button`
     color: var(--white);
     margin-bottom: 20px;
     cursor: pointer;
-
-
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    
     @media (prefers-reduced-motion: no-preference) {
         & {
             animation: Shine infinite 1.9s ease-in-out;
