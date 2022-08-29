@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext} from 'react'
 import { DataContext } from '../state/dataContext';
 import Login from '../views/Login';
 import Singup from '../views/Singup';
@@ -6,7 +6,6 @@ import Success from '../views/Success';
 import {
   light,
   gra1,
-  gra2,
   gra3,
   gra4, 
   Layout,
@@ -22,30 +21,32 @@ const AppUI = () => {
   const theme = light;
 
   return(
-      <Layout style={theme}>
-        <AnimateFruit>
-          <img 
-          className='left'
-          src={PinkFruit} 
-          alt='pinfruit'
-          />
-        </AnimateFruit>
+    <div style={theme}>
+      {!!onSuccess ? <Success gradient={gra1}/>
+        : 
+        <Layout>
+          <AnimateFruit>
+            <img 
+            className='left'
+            src={PinkFruit} 
+            alt='pinfruit'
+            />
+          </AnimateFruit>
 
-        <CardContainer style={gradient}>  
-          {!!onSuccess ? <Success />
-            : 
-          (!!view ? <Login /> : <Singup /> ) 
-          }
-        </CardContainer>
+          <CardContainer style={gradient}>  
+            {!!view ? <Login /> : <Singup />} 
+          </CardContainer>
 
-        <AnimateFruit>
-          <img 
-          className='right'
-          src={PinkFruit} 
-          alt='pinfruit'
-          />
-        </AnimateFruit>
-      </Layout>
+          <AnimateFruit>
+            <img 
+            className='right'
+            src={PinkFruit} 
+            alt='pinfruit'
+            />
+          </AnimateFruit>
+        </Layout>
+      }
+    </div>
   )
 };
 

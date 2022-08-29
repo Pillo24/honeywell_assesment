@@ -50,28 +50,33 @@ const DataProvider = ({children}) => {
 
     const [isLogged, setIsLogged] = useState('');
     const [logginErrors, setLogginErrors] = useState({});
+    const [access, setAccess] = useState({});
 
       const checkLoginPass = (value) => {     
         if(isLogged === value){    
-          delete logginErrors.password
+          delete logginErrors.password;
+          setAccess({...access,password: true});
         } else {
+          setAccess({...access,password: false});
           setLogginErrors({
             ...logginErrors,
-            password:'This password does not match, try again'
+            password:'Incorrect password, try again'
           });
         }
       };
 
     const checkLoginMail = (value) => {
         const emailCheck = item.find(element => element.email === value);
-        
+
         if(!!emailCheck){
           setIsLogged(emailCheck.password); 
+          setAccess({...access,name: true});
           delete logginErrors.email;
         } else {
+          setAccess({...access,name: false});
           setLogginErrors({
             ...logginErrors,
-            email:'This email does not exist, register'
+            email:'This email does not exist'
           });
         }
     };
@@ -89,10 +94,11 @@ const DataProvider = ({children}) => {
 
     const submitleLogin = (e)=> {
       e.preventDefault();
-
       setErrors(logginErrors);
-      
-      Object.keys(logginErrors).length === 0 && setOnSubmit(true);
+
+      if(access.name === true && access.password === true){
+        setOnSubmit(true);
+      }
    };
 
     useEffect(() => {
@@ -103,7 +109,6 @@ const DataProvider = ({children}) => {
   },[errors]);
 
   const [view, setView] = useState(false);
-
   return (
     <DataContext.Provider value={{
       setOnSuccess,

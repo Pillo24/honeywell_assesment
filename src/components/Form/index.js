@@ -14,7 +14,12 @@ const Form = ({
   button_text,
   children
 }) => {
-  const { setView, view } = useContext(DataContext);
+  const { setView, view, setOnSuccess } = useContext(DataContext);
+
+  const onPageChange = () => {
+    setOnSuccess(false);
+    setView(!view);
+  };
 
   return (
     <FormContainer onSubmit={onSubmit} login={view} noValidate>
@@ -29,12 +34,12 @@ const Form = ({
         </SubmitButton>
       
       {!! view ?
-        <LinkContainer onClick={() => setView(!view)}>
+        <LinkContainer onClick={onPageChange}>
           Don't have an account? 
           <Link>Register</Link>
         </LinkContainer>
       :
-        <LinkContainer onClick={() => setView(!view)}>
+        <LinkContainer onClick={onPageChange}>
           Already have an account? 
           <Link>Login</Link>
         </LinkContainer>

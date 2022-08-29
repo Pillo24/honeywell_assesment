@@ -24,15 +24,6 @@ const gra1 = {
     '--gradient100': bg1.gradient100,
 }
 
-const gra2 = {
-    '--gradient': bg2.gradient,
-    '--gradient0': bg2.gradient0,
-    '--gradient25': bg2.gradient25,
-    '--gradient50': bg2.gradient50,
-    '--gradient75': bg2.gradient75,
-    '--gradient100': bg2.gradient100,
-}
-
 const gra3 = {
     '--gradient': bg3.gradient,
     '--gradient0': bg3.gradient0,
@@ -53,7 +44,7 @@ const gra4 = {
 
 const Background = styled.div`
     background-color: ${color.main};
-    background:url(${Bg});
+    background-image:url(${Bg});
     background-repeat: no-repeat;
     background-size: cover; 
     width: 100%;
@@ -123,7 +114,6 @@ const CardContainer = styled.div`
 export {
     light,
     gra1,
-    gra2,
     gra3,
     gra4,
     Layout,
