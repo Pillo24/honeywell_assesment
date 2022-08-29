@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 
 const FormContainer = styled.form`
-    height: 500px;
+    height: 100%;
     width: 100%;
     border-radius: 10%;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
@@ -10,19 +10,20 @@ const FormContainer = styled.form`
     color: var(--white);
 
     display: grid;
-    grid-template-rows: 150px auto;
+    grid-template-rows: 110px auto;
     justify-items: center;
-    align-items: center;
+    align-items: end;
+    padding-bottom: 60px;
 `;
 
 const InputContainer = styled.div`
     display: grid;
-    background: var(--black);
     align-items: center;
     justify-items: center; 
+    align-self: baseline;
+    border-top: 1px solid var(--main);
+    padding-top: 20px;
 `;
-
-
 
 const Form = ({onSubmit, title, login, children}) => {
   return (

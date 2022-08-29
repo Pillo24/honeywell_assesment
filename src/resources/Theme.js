@@ -30,6 +30,7 @@ export const color = {
 
     primary_light: '#C9A7E4ee',
     mid_light: '#F97384ee',
+    transparent: 'rgba(0, 0, 0, 0)',
 
     white: "#F9FBF2",
     black: "#212121",  

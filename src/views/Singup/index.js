@@ -20,7 +20,7 @@ const FormSignup = () => {
       <Input 
       type='text'
       name='username'
-      placeholder='Enter your username'
+      placeholder='Username'
       value={values.username} 
       onChange={handleChange}
       errors={errors.username}
@@ -29,7 +29,7 @@ const FormSignup = () => {
       <Input 
       type='email'
       name='email'
-      placeholder='Enter your email'
+      placeholder='Email'
       value={values.email}
       onChange={handleChange}
       errors={errors.email}
@@ -38,7 +38,7 @@ const FormSignup = () => {
       <Input 
       type='password'
       name='password'
-      placeholder='Enter your password'
+      placeholder='Password'
       value={values.password}
       onChange={handleChange}
       errors={errors.password}
@@ -47,7 +47,7 @@ const FormSignup = () => {
       <Input 
       type='password'
       name='password2'
-      placeholder='Confirm your password'
+      placeholder='Confirm password'
       value={values.password2}
       onChange={handleChange}
       errors={errors.password2}

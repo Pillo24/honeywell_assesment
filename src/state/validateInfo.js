@@ -21,14 +21,14 @@ const validateInfo = (values) => {
 
 
     if (!values.password) {
-      errors.password = 'Password is required';
+      errors.password = 'Password required';
     } else if (!password_RGX.test(values.password)) {
       errors.password = 'Password needs to be min 8 characters characters, at least 1 numeric character, at least 1 lowercase letter, at least 1 uppercase letter, at least 1 special character';
     }
   
 
     if (!values.password2) {
-      errors.password2 = 'Password is required';
+      errors.password2 = 'Password required';
     } else if (values.password2 !== values.password) {
       errors.password2 = 'Passwords do not match';
     }
