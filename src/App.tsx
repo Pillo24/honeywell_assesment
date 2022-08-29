@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Pages
@@ -8,7 +8,7 @@ import { LoginPage } from './pages';
 import Layout from './components/layout';
 
 // Styles
-import './App.css';
+import './styles/App.scss';
 
 function App() {
   return (

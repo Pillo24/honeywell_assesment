@@ -1,0 +1,17 @@
+$primary-color :#AC81E8;
+$secondaty-color: #7ca3f4;
+$third-color: #82d4ca;
+
+$base-unit: 0.25rem;
+
+$spacing-0: 0;
+$spacing-10: $base-unit;
+$spacing-20: calc(var($base-unit) * 2); // 0.5rem (~8px)
+$spacing-30: calc(var($base-unit) * 3);
+$spacing-40: calc(var($base-unit) * 4); // 1rem (~16px)
+$spacing-50: calc(var($base-unit) * 5);
+$spacing-60: calc(var($base-unit) * 6); // 1.5rem (~24px)
+$spacing-70: calc(var($base-unit) * 7);
+$spacing-80: calc(var($base-unit) * 8); // 2rem (~32px)
+$spacing-90: calc(var($base-unit) * 9);
+$spacing-100: calc(var($base-unit) * 10); // 2.5rem (~40px)
