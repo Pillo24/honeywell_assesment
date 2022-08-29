@@ -33,7 +33,7 @@ export const color = {
     transparent: 'rgba(0, 0, 0, 0)',
 
     white: "#F9FBF2",
-    black: "#212121",  
+    black: "#212121cc",  
 
     red: '#F3444A',
     green: '#98CA3F',

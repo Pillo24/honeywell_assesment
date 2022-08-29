@@ -14,9 +14,9 @@ const FormSignup = () => {
   return (
     <Form 
     title='Register'
+    button_text='Sign up'
     onSubmit={handleSubmit}
     >
-
       <Input 
       type='text'
       name='username'
@@ -52,14 +52,6 @@ const FormSignup = () => {
       onChange={handleChange}
       errors={errors.password2}
       /> 
-
-      <button type='submit'>
-        Sign up
-      </button>
-      
-      <span>
-        Already have an account? Login <a href='#'>here</a>
-      </span>
     </Form>
   );
 };

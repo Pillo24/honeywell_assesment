@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components';
 
 const Inputcontainer = styled.div`
-  width: 100%;
+  width: 60%;
+  margin: 0 auto;
   margin-bottom: 30px;
-
+  
   input {
-      width: 97%;
+      width: 100%;
       background: rgba(0, 0, 0, 0);
       border: 3px solid var(--secondary);
       padding: 10px 0;

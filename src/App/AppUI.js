@@ -18,7 +18,7 @@ import PinkFruit from '../resources/assets/pinkfruit.png';
 const AppUI = () => {
   const { onSuccess, view } = useContext(DataContext);
   
-  const gradient = gra2;
+  const gradient = gra4;
   const theme = light;
 
   return(
