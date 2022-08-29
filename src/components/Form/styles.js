@@ -39,7 +39,7 @@ const SubmitButton = styled.button`
 
     @media (prefers-reduced-motion: no-preference) {
         & {
-            animation: Shine infinite 2s ease-in-out;
+            animation: Shine infinite 1.9s ease-in-out;
         }
         &:hover {
             background: var(--gradient);

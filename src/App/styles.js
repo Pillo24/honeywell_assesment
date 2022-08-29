@@ -103,6 +103,21 @@ const AnimateFruit = styled.div `
 const CardContainer = styled.div`
     width: 90%;
     margin: 0 auto;
+
+    @media (prefers-reduced-motion: no-preference) {
+        & {
+            animation: Fade-in 1s ease-in-out;
+        }
+    }
+
+    @keyframes Fade-in {
+        from {
+            width: 20%;
+        }
+        to {
+            width: 100%;
+        }
+    }
 `;
 
 export {

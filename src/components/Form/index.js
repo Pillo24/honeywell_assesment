@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {
   FormContainer,
   InputContainer,
@@ -6,21 +6,18 @@ import {
   Link,
   LinkContainer
 } from './styles';
+import { DataContext } from '../../state/dataContext';
 
 const Form = ({
   onSubmit, 
   title, 
-  login,
   button_text,
   children
 }) => {
-
-  const SwitchView = () => {
-
-  };
+  const { setView, view } = useContext(DataContext);
 
   return (
-    <FormContainer onSubmit={onSubmit} login={login} noValidate>
+    <FormContainer onSubmit={onSubmit} login={view} noValidate>
          <h1>{title}</h1>
         
         <InputContainer>
@@ -31,11 +28,17 @@ const Form = ({
         {button_text}
         </SubmitButton>
       
-     
-        <LinkContainer onClick={SwitchView}>
+      {!! view ?
+        <LinkContainer onClick={() => setView(!view)}>
+          Don't have an account? 
+          <Link>Register</Link>
+        </LinkContainer>
+      :
+        <LinkContainer onClick={() => setView(!view)}>
           Already have an account? 
           <Link>Login</Link>
         </LinkContainer>
+      }
     </FormContainer>
   )
 }
