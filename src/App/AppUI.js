@@ -1,25 +1,30 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import { DataContext } from '../state/dataContext';
 import Login from '../views/Login';
 import Singup from '../views/Singup';
 import Success from '../views/Success';
 import PinkFruit from '../resources/assets/pinkfruit.png';
-import {light, gra1, gra3, gra4} from '../resources/Theme';
+import {light, dark} from '../resources/Theme';
+import SwitchButton from '../components/SwitchButton';
 import {
   Layout,
   AnimateFruit,
-  CardContainer 
+  CardContainer,
+  AppContainer 
 } from './styles';
 
 const AppUI = () => {
   const { onSuccess, view } = useContext(DataContext);
-  
-  const gradient = !!view? gra3 : gra4;
-  const theme = light;
+  const [palette, setPalette] = useState(true);
+  const theme = !!palette ? light : dark;
+
+  const succes_gradient =theme.gradient.gra1;
+  const gradient = !!view? theme.gradient.gra3 : theme.gradient.gra4;
 
   return(
-    <div style={theme}>
-      {!!onSuccess ? <Success gradient={gra1}/>
+    <AppContainer style={theme}>
+
+      {!!onSuccess ? <Success gradient={succes_gradient}/>
         : 
         <Layout>
           <AnimateFruit>
@@ -43,7 +48,8 @@ const AppUI = () => {
           </AnimateFruit>
         </Layout>
       }
-    </div>
+      <SwitchButton onClick={()=>setPalette(!palette)}/>
+    </AppContainer>
   )
 };
 

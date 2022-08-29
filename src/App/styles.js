@@ -2,17 +2,22 @@ import styled from "styled-components";
 import { device } from "../resources/Theme";
 import Bg from '../resources/assets/bg_pink.jpg';
 
+const AppContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
 const Background = styled.div`
     background-color: var(--main);
     background-image:url(${Bg});
+    filter: var(--filter);
+
     background-repeat: no-repeat;
     background-size: cover; 
     width: 100%;
     min-height: 100vh;
-
-    @media ${device.laptop} { 
-   
-    }
 `;
 
 const Layout = styled(Background)`
@@ -119,5 +124,6 @@ const CardContainer = styled.div`
 export {
     Layout,
     AnimateFruit,
-    CardContainer
+    CardContainer,
+    AppContainer
 };
