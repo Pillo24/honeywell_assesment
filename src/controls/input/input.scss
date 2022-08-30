@@ -1,0 +1,79 @@
+@import '../../styles/variables.scss';
+
+.input__size-small {
+    --input-width: 180px;
+}
+  
+.input__size-medium {
+    --input-width: 300px;
+}
+  
+.input__size-large {
+    --input-width: 500px;
+}
+  
+.input__size-auto {
+    --input-width: 100%;
+}
+  
+.input__container {
+    width: var(--input-width);
+}
+
+.input {
+  background-color: $light-color;
+  border: 1px solid $primary-color;
+  border-radius: $spacing-10;
+  color: $dark-color;
+  font-size: $font-size-25;
+  height: $spacing-70;
+  padding: 0 $spacing-20;
+  width: calc(var(--input-width) - $spacing-40);
+
+  &::placeholder {
+    color: $light-color;
+  }
+
+  &:focus {
+    border-color: $secondary-color;
+    outline: none;
+    outline-color: $secondary-color;
+  }
+
+  &:disabled,
+  &:read-only {
+    background-color: $disabled-color;
+    border-color: $dark-color;
+    box-shadow: none;
+    cursor: not-allowed;
+
+    &::placeholder {
+      color: $dark-color;
+    }
+  }
+}
+
+.field__label {
+    display: flex;
+    font-size: $font-size-25;
+    margin-bottom: $spacing-10;
+  
+    .field__label-text {
+      color: $primary-color;
+    }
+  
+    .field__label-required-text {
+      color: $danger-color;
+      margin-left: $spacing-10;
+    }
+}
+  
+.field__feedback {
+    color: $dark-color;
+    display: block;
+    font-size: $font-size-20;
+  
+    &--has-error {
+      color: $danger-color;
+    }
+}
