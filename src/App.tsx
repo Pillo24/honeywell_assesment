@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Pages
-import { LoginPage } from './pages';  
+import { SingUpPage } from './pages';  
 
 // Components
 import Layout from './components/layout';
@@ -16,8 +16,8 @@ function App() {
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/" element={<SingUpPage />} />
+            <Route path="/login" element={<SingUpPage />} />
           </Routes>
         </Suspense>
       </Router>
