@@ -33,8 +33,6 @@ const SingUp: React.FC = (): JSX.Element => {
         resolver: yupResolver(singUpSchema),
     });
 
-    console.log('errors: ', errors)
-
     const onSubmit = (user: SignupForm): void => {
         console.log('new user:', user);
     }
