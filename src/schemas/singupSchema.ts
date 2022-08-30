@@ -5,8 +5,8 @@ export const singUpSchema = Yup.object().shape({
     .required("User Name is required")
     .min(6, "User Name must be at least 6 characters")
     .matches(
-      /[^A-Za-z0-9]+/g,
-      "User Name should contain only alphabets or numbers without spaces."
+      /^[aA-zZ]+[0-9]/,
+      "User Name should contain only alphabetic character or numbers without spaces."
     ),
 
   email: Yup.string()
@@ -16,7 +16,7 @@ export const singUpSchema = Yup.object().shape({
     .required("Password is required")
     .min(8, "Password must be at least 8 characters")
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&])/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&^&*()?<>])/,
       "Password should contain at least 1 lowercase and uppercase character, 1 numeric character and 1 speacial character"
     ),
   validation: Yup.string()
