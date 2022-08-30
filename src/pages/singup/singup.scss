@@ -1,3 +1,20 @@
+@import '../../styles/variables.scss';
+
 .sing-up__container {
     width: 100%;
+    padding: $spacing-60 0;
+}
+
+.sing-up__form {
+    margin: 0 auto;
+    padding: $spacing-100;
+    border: 1px solid $primary-color;
+    border-radius: $spacing-40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min-content;
+    .sing-up__form-field {
+        margin-bottom: $spacing-40;
+    }
 }
