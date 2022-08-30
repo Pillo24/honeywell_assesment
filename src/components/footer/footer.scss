@@ -1,0 +1,8 @@
+@import '../../styles/variables.scss';
+
+.footer__container {
+    background-color: $secondary-color;
+    display: flex;
+    justify-content: center;
+    padding: $spacing-60 $spacing-100 $spacing-40;
+}
