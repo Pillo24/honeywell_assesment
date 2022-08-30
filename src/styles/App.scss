@@ -1,21 +1,6 @@
-.App {
-  text-align: center;
-}
+@import '../styles/variables.scss';
 
-.App-header {
-  background-color: black;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  font-family: Consolas,monaco,monospace; 
-  color: #008F11;
-}
-.App-body {
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-
+p, span, a {
+  font-size: $font-size-30;
+  margin: 0 0 $spacing-20;
 }
