@@ -1,0 +1,149 @@
+@import '../../styles/variables.scss';
+
+
+.button {
+    border-radius: $spacing-10;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1rem;
+    height: $spacing-60;
+    line-height: $font-size-0;
+    margin: $spacing-0;
+    padding: $spacing-30 $spacing-50;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  
+    &:focus {
+      box-shadow: 2px;
+      outline: 0;
+    }
+  
+    &:disabled {
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+  }
+
+  .button__link {
+    background-color: transparent;
+    border-color: transparent;
+    margin: $spacing-0;
+    padding: $spacing-30 $spacing-50;
+    color: var(--button-color);
+  
+    &:hover {
+        opacity: 0.7;
+    }
+  
+    &:focus {
+      box-shadow: none;
+    }
+  
+    &:disabled {
+      border-color: transparent;
+      color: $disabled-color;
+    }
+  }
+  
+  // Style type variants
+  
+  .button__promoted {
+    background-color: var(--button-color);
+    border-color: var(--button-color);
+    color: $light-color;
+  
+    &:hover {
+      opacity: 0.7;
+    }
+  
+    &:disabled {
+        background-color: $disabled-color;
+        border-color: $disabled-color;
+    }
+  }
+  
+  .button__standard {
+    background-color: transparent;
+    border-color: var(--button-color);
+    color: var(--button-color);
+  
+    &:hover {
+        background-color: var(--button-color);
+        color: $light-color;
+    }
+  
+    &:disabled {
+        border-color: $disabled-color;
+        color: $disabled-color;
+    }
+  }
+  
+  // Size variants
+  
+  .button__large {
+    font-size: $font-size-35;
+    padding: $spacing-40 $spacing-50;
+  
+    &.button__link {
+        margin: $spacing-40 $spacing-50;
+        padding: 0;
+    }
+  }
+  
+  .button__small {
+    font-size: $font-size-25;
+    padding: $spacing-20 $spacing-50;
+  
+    &.button__link {
+      margin: $spacing-20 $spacing-50;
+      padding: 0;
+    }
+  }
+  
+  .button__smaller {
+    font-size: $font-size-20;
+    padding: $spacing-10 $spacing-50;
+
+    &.button__link {
+      margin: $spacing-10 $spacing-50;
+      padding: 0;
+    }
+  }
+  
+  .button__auto {
+    height: 100%;
+    width: 100%;
+    font-size: $font-size-25;
+    padding: $spacing-20 $spacing-50;
+  
+    &.button__link {
+        margin: $spacing-20 $spacing-50;
+        padding: 0;
+    }
+  }
+  
+  // Color type variants
+  
+  .button__primary {
+    --button-color: var(--primary-color);
+  }
+  
+  .button__secondary {
+    --button-color: var(--secondary-color);
+  }
+  
+  .button__success {
+    --button-color: var(--success-color);
+  }
+  
+  .button__error {
+    --button-color: var(--danger-color);
+  }
+  
+  .button__warning {
+    --button-color: var(--warning-color);
+  }
+  
