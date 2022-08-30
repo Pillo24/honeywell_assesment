@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form"; 
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -28,6 +28,7 @@ const SingUp: React.FC = (): JSX.Element => {
         register,
         handleSubmit,
         formState: { errors },
+        setValue,
     } = useForm<SignupForm>({
         resolver: yupResolver(singUpSchema),
     });
@@ -42,31 +43,35 @@ const SingUp: React.FC = (): JSX.Element => {
         <div className='sing-up__container'>
             <form className='sing-up__form' onSubmit={handleSubmit(onSubmit)}>
                 <Input
+                    fieldName='userName'
                     fieldClassName="sing-up__form-field"
                     required
                     labelText='Username'
                     isError={!!errors?.userName}
                     error={errors?.userName?.message || ''}
-                    {...register('userName')}
+                    setValue={setValue}
                 />
                 <Input
+                    fieldName='email'
                     fieldClassName="sing-up__form-field"
                     required
                     labelText='Email'
                     isError={!!errors?.email}
                     error={errors?.email?.message || ''}
-                    {...register('email')}
+                    setValue={setValue}
                 />
                 <Input
+                    fieldName='password'
                     fieldClassName="sing-up__form-field"
                     required
                     type="password"
                     labelText='Password'
                     isError={!!errors?.password}
                     error={errors?.password?.message || ''}
-                    {...register('password')}
+                    setValue={setValue}
                 />
                 <Input
+                    fieldName='validation'
                     fieldClassName="sing-up__form-field"
                     required
                     type="password"
@@ -74,7 +79,7 @@ const SingUp: React.FC = (): JSX.Element => {
                     helper='Plase confirm password'
                     isError={!!errors?.validation}
                     error={errors?.validation?.message || ''}
-                    {...register('validation')}
+                    setValue={setValue}
                 />
                 <Button>Sign Up</Button>
             </form>

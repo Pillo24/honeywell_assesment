@@ -5,7 +5,7 @@ export const singUpSchema = Yup.object().shape({
     .required("User Name is required")
     .min(6, "User Name must be at least 6 characters")
     .matches(
-      /^[aA-zZ][0-9]+$/,
+      /[^A-Za-z0-9]+/g,
       "User Name should contain only alphabets or numbers without spaces."
     ),
 

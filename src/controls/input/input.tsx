@@ -1,10 +1,13 @@
-import {
+import React, {
     ComponentProps,
     DetailedHTMLProps,
     FC,
     InputHTMLAttributes,
     useMemo,
 } from 'react';
+
+
+import { UseFormSetValue } from "react-hook-form"; 
 
 // Components
 import classNames from 'classnames';
@@ -17,6 +20,8 @@ extends DetailedHTMLProps<
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
 > {
+    fieldName?: string;
+    setValue?: UseFormSetValue<any>,
     required?: boolean;
     labelText?: string;
     width?: 'small' | 'medium' | 'large' | 'auto';
@@ -30,6 +35,8 @@ extends DetailedHTMLProps<
 }
 
 const Input: FC<InputProps> = ({
+    fieldName,
+    setValue,
     className,
     labelText,
     type = 'text',
@@ -67,6 +74,10 @@ const Input: FC<InputProps> = ({
         ),
         [className, required, isError],
     );
+
+    const handleChange =(e: React.ChangeEvent<HTMLInputElement>) => {
+        if (setValue) setValue(fieldName || '', e.target.value)
+    }
     
     return (
         <div className={fieldContainerClassName}>
@@ -83,11 +94,13 @@ const Input: FC<InputProps> = ({
                 </div>
             )}
             <input
+                id={fieldName}
+                name={fieldName}
                 className={inputClassNames}
                 required={required}
                 aria-label={labelText}
                 type={type}
-                {...otherProps}
+                onChange={handleChange}
             />
             {helper && <div className="field__feedback">{helper}</div>}
             {isError && (
