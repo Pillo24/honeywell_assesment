@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+import { useForm } from "react-hook-form"; 
+import { yupResolver } from "@hookform/resolvers/yup";
+
+// Components
 import Button from '../../components/button';
 import Input from '../../controls/input';
+
+// Schema
+import { singUpSchema } from "../../schemas/singupSchema";
 
 // Styles
 import './singup.scss';
@@ -9,42 +16,55 @@ export interface SingUpProps {
     logged: boolean;
 }
 
-const SingUp: React.FC = (): JSX.Element => {
-    const [userName, setUserName] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [validation, setValidation] = useState<string>('');
+export type SignupForm = {
+    userName: string;
+    email: string;
+    password: string;
+    validation: string;
+};
 
-    const handleSubmit = (e: React.FormEvent): void => {
-        e.preventDefault();
-        const user = { userName, email, password };
-        console.log('user:', user);
+const SingUp: React.FC = (): JSX.Element => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<SignupForm>({
+        resolver: yupResolver(singUpSchema),
+    });
+
+    console.log('errors: ', errors)
+
+    const onSubmit = (user: SignupForm): void => {
+        console.log('new user:', user);
     }
 
     return (
         <div className='sing-up__container'>
-            <form className='sing-up__form' onSubmit={handleSubmit}>
+            <form className='sing-up__form' onSubmit={handleSubmit(onSubmit)}>
                 <Input
                     fieldClassName="sing-up__form-field"
                     required
                     labelText='Username'
-                    value={userName}
-                    setValue={setUserName}
+                    isError={!!errors?.userName}
+                    error={errors?.userName?.message || ''}
+                    {...register('userName')}
                 />
                 <Input
                     fieldClassName="sing-up__form-field"
                     required
                     labelText='Email'
-                    value={email}
-                    setValue={setEmail}
+                    isError={!!errors?.email}
+                    error={errors?.email?.message || ''}
+                    {...register('email')}
                 />
                 <Input
                     fieldClassName="sing-up__form-field"
                     required
                     type="password"
                     labelText='Password'
-                    value={password}
-                    setValue={setPassword}
+                    isError={!!errors?.password}
+                    error={errors?.password?.message || ''}
+                    {...register('password')}
                 />
                 <Input
                     fieldClassName="sing-up__form-field"
@@ -52,8 +72,9 @@ const SingUp: React.FC = (): JSX.Element => {
                     type="password"
                     labelText='Password Validation'
                     helper='Plase confirm password'
-                    value={validation}
-                    setValue={setValidation}
+                    isError={!!errors?.validation}
+                    error={errors?.validation?.message || ''}
+                    {...register('validation')}
                 />
                 <Button>Sign Up</Button>
             </form>
