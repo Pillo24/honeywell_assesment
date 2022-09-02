@@ -1,6 +1,6 @@
 .App {
   align-items: center;
-  background-color: #282c34;
+  background-color: #fff;
   display: flex;
   flex: 0 0 100%;
   justify-content: center;
@@ -10,4 +10,8 @@
 p {
   font-size: .8em;
   margin: 0;
+}
+
+img {
+  max-width: 100%;
 }

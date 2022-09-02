@@ -6,3 +6,5 @@ export const Margins = css`
   margin-right: ${(props) => props.marginRight};
   margin-bottom: ${(props) => props.marginBottom};
 `
+
+export const primaryColor = '#0071b3'

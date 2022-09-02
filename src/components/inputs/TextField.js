@@ -1,14 +1,14 @@
 import styled from 'styled-components'
-import { Margins } from '../globals'
+import * as global from '../globals'
 import { FaEnvelope, FaLock } from 'react-icons/fa'
 
 const InputBox = styled.div`
-  ${Margins}
+  ${global.Margins}
   &:hover > span{
-    color: #726BD1;
+    color: ${global.primaryColor};
   }
   &:focus > span{
-    color: #726BD1;
+    color: ${global.primaryColor};
   }
 `
 
@@ -22,10 +22,10 @@ const InputText = styled.input`
   padding-left: 2.4em;
   width: -webkit-fill-available;
   &:hover {
-    border: 2px solid #726BD1;
+    border: 2px solid ${global.primaryColor};
   }
   &:focus {
-    border: 2px solid #726BD1;
+    border: 2px solid ${global.primaryColor};
     font-weight: 500;
   }
 
