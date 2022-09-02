@@ -1,0 +1,7 @@
+@import '../styles/variables.scss';
+
+p, span, a {
+  font-size: $font-size-30;
+  margin: 0 0 $spacing-20;
+  color: $dark-color
+}

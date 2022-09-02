@@ -1,0 +1,49 @@
+@import '../../styles/variables.scss';
+
+.header__container {
+    background-color: $third-color;
+    padding: $spacing-40 $spacing-100;
+}
+
+.header__content {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .logo__container {
+        margin-bottom: $spacing-40;
+    }
+
+    @media screen and (min-width: $breakpoint-sm) {
+        flex-direction: row;
+        justify-content: space-between;
+        .logo__container {
+            margin-bottom: 0;
+        }
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        max-width: 768px;        
+    }
+
+    @media screen and (min-width: $breakpoint-lg) {
+        max-width: 992px;        
+    }
+
+    @media screen and (min-width: $breakpoint-xl) {
+        max-width: 1200px;        
+    }
+
+    @media screen and (min-width: $breakpoint-xxl) {
+        max-width: 1400px;        
+    }
+}
+
+.header__buttons {
+    display: flex;
+    align-items: center;
+    button:first-child {
+        margin-right: $spacing-40;
+    }
+}

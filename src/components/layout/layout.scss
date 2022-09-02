@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.main__area {
+    min-height: calc(100vh - calc($base-unit * 13) - calc($base-unit * 16) - $spacing-20);
+
+    background-color: $background-color;
+    .main__content {
+        margin: 0 auto;
+        @media screen and (min-width: $breakpoint-md) {
+            max-width: 768px;        
+        }
+
+        @media screen and (min-width: $breakpoint-lg) {
+            max-width: 992px;        
+        }
+
+        @media screen and (min-width: $breakpoint-xl) {
+            max-width: 1200px;        
+        }
+
+        @media screen and (min-width: $breakpoint-xxl) {
+            max-width: 1400px;        
+        }
+    }
+}
