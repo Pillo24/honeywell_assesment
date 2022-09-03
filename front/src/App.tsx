@@ -1,24 +1,36 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { useUserAuthContext } from './hooks/useUserAuthContext'
+
+// pages & components
+import Home from './container/Home'
+import Hello from './container/Hello'
+import Login from './container/Login'
+import Signup from './container/Signup'
+import Navbar from './components/NavBar'
+
+//styles
 import './App.css'
 
-interface AppProps {}
-
-const App: React.FC<AppProps> = () => {
+const App = (): JSX.Element => {
+    const { user } = useUserAuthContext()
     return (
         <div className="App">
-            <header className="App-header">
-                <h3>Hello there #FutureShaper...</h3>
-                <p>
-                    This is a simple React app that will be used to asses your
-                    skills.
-                </p>
-                <p>
-                    Please follow the instructions in the README.md file to get
-                    started.
-                </p>
-                <p>
-                    Edit <code>src/App.js</code> and show me what you got!
-                </p>
-            </header>
+            <BrowserRouter>
+                <Navbar />
+                <div className="body">
+                    <Routes>
+                        <Route path="/" element={user ? <Home /> : <Hello />} />
+                        <Route
+                            path="/login"
+                            element={!user ? <Login /> : <Navigate to={'/'} />}
+                        />
+                        <Route
+                            path="/signup"
+                            element={!user ? <Signup /> : <Navigate to={'/'} />}
+                        />
+                    </Routes>
+                </div>
+            </BrowserRouter>
         </div>
     )
 }
