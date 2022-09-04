@@ -5,7 +5,7 @@ export const useValidName = () => {
     const [errMesgName, setErrMesgName] = useState<string>('')
 
     const handlNameValidation = (value: string) => {
-        const nameformat = /^[a-z]+$/
+        const nameformat = /^[a-z_]+( [a-z_]+)*$/
 
         const validName = nameformat.test(value.trim().toLocaleLowerCase())
         console.log(validName)

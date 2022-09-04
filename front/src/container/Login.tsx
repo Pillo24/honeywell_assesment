@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent, useEffect } from 'react'
+import { useState, SyntheticEvent, useEffect, useCallback } from 'react'
 import FormControl from '../components/FormControl'
 import { useLogin } from '../hooks/useLogin'
 import { useValidEmail } from '../hooks/useValidEmail'
@@ -20,8 +20,12 @@ const Login = () => {
         password !== '' && handlePasswordValidation(password)
     }, [email, password, handlEmailValidation, handlePasswordValidation])
 
-    const handleEmailChange = (value: string) => setEmail(value)
-    const handlePasswordChange = (value: string) => setPassword(value)
+    const mempozedHandleEmailChange = useCallback((value: string) => {
+        setEmail(value)
+    }, [])
+    const memoizedHandlePasswordChange = useCallback((value: string) => {
+        setPassword(value)
+    }, [])
 
     const handleSubmmit = async (e: SyntheticEvent) => {
         e.preventDefault()
@@ -37,13 +41,13 @@ const Login = () => {
                 <FormControl
                     lableTitle={'Email'}
                     value={email}
-                    onChange={handleEmailChange}
+                    onChange={mempozedHandleEmailChange}
                     errMessage={errMesgEmail}
                 />
                 <FormControl
                     lableTitle={'Password'}
                     value={password}
-                    onChange={handlePasswordChange}
+                    onChange={memoizedHandlePasswordChange}
                     errMessage={errMsgPass}
                 />
 

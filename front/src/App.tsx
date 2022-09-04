@@ -12,7 +12,8 @@ import Navbar from './components/NavBar'
 import './App.css'
 
 const App = (): JSX.Element => {
-    const { user } = useUserAuthContext()
+    const { state } = useUserAuthContext()
+    const { user } = state
     return (
         <div className="App">
             <BrowserRouter>

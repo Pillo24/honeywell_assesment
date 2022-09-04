@@ -6,10 +6,12 @@ import './NavBar.css'
 
 const Navbar = (): JSX.Element => {
     const { logout } = useLogout()
-    const { user } = useUserAuthContext()
+    const { state } = useUserAuthContext()
+    const { user } = state
     const handleClick = () => {
         logout()
     }
+
     return (
         <header>
             <div className="container">
