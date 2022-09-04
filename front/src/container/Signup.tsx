@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent, useEffect } from 'react'
+import { useState, SyntheticEvent, useEffect, useCallback } from 'react'
 import FormControl from '../components/FormControl'
 import { useComparePasswords } from '../hooks/useComparePasswords'
 import { useSignup } from '../hooks/useSignup'
@@ -40,11 +40,21 @@ const Signup = () => {
     }, [password, confirmPassword, handlComparePasswords])
 
     //handle the value of the inputs
-    const handleNameChange = (value: string) => setName(value)
-    const handleEmailChange = (value: string) => setEmail(value)
-    const handlePasswordChange = (value: string) => setPassword(value)
-    const handleConfirmPasswordChange = (value: string) =>
+    const memoizedHandleNameChange = useCallback((value: string) => {
+        setName(value)
+    }, [])
+
+    const memoizedHandleEmailChange = useCallback((value: string) => {
+        setEmail(value)
+    }, [])
+
+    const memoizedhandlePasswordChange = useCallback((value: string) => {
+        setPassword(value)
+    }, [])
+
+    const memoizedHandleConfirmPasswordChange = useCallback((value: string) => {
         setConfrimPassword(value)
+    }, [])
 
     const handleSubmmit = async (e: SyntheticEvent) => {
         e.preventDefault()
@@ -59,25 +69,25 @@ const Signup = () => {
                 <FormControl
                     lableTitle={'Name'}
                     value={name}
-                    onChange={handleNameChange}
+                    onChange={memoizedHandleNameChange}
                     errMessage={errMesgName}
                 />
                 <FormControl
                     lableTitle={'Email'}
                     value={email}
-                    onChange={handleEmailChange}
+                    onChange={memoizedHandleEmailChange}
                     errMessage={errMesgEmail}
                 />
                 <FormControl
                     lableTitle={'Password'}
                     value={password}
-                    onChange={handlePasswordChange}
+                    onChange={memoizedhandlePasswordChange}
                     errMessage={errMsgPass}
                 />
                 <FormControl
                     lableTitle={'Confirm Password'}
                     value={confirmPassword}
-                    onChange={handleConfirmPasswordChange}
+                    onChange={memoizedHandleConfirmPasswordChange}
                     errMessage={errMesgPasswords}
                 />
 

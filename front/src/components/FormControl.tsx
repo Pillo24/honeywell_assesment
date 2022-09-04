@@ -1,4 +1,4 @@
-import { ChangeEvent, Fragment } from 'react'
+import { ChangeEvent, Fragment, memo } from 'react'
 
 export interface FormControlProps {
     lableTitle: string
@@ -28,4 +28,4 @@ const FormControl: React.FC<FormControlProps> = ({
     )
 }
 
-export default FormControl
+export default memo(FormControl)
