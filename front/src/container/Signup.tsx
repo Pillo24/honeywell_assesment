@@ -6,6 +6,8 @@ import { useValidEmail } from '../hooks/useValidEmail'
 import { useValidName } from '../hooks/useValidName'
 import { useValidPassword } from '../hooks/useValidPassword'
 
+import './Signup.css'
+
 const Signup = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
