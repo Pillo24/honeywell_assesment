@@ -1,0 +1,22 @@
+import { useState } from 'react'
+
+export const useValidName = () => {
+    const [isValidName, setIsValidName] = useState<boolean>(false)
+    const [errMesgName, setErrMesgName] = useState<string>('')
+
+    const handlNameValidation = (value: string) => {
+        const nameformat = /^[a-z]+$/
+
+        const validName = nameformat.test(value.trim().toLocaleLowerCase())
+        console.log(validName)
+        let errMsg = ''
+        if (!validName) {
+            errMsg = 'please add a valid name '
+        }
+
+        setErrMesgName(errMsg)
+        setIsValidName(validName)
+    }
+
+    return { isValidName, errMesgName, handlNameValidation }
+}
