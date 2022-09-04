@@ -8,7 +8,6 @@ export const useValidName = () => {
         const nameformat = /^[a-z_]+( [a-z_]+)*$/
 
         const validName = nameformat.test(value.trim().toLocaleLowerCase())
-        console.log(validName)
         let errMsg = ''
         if (!validName) {
             errMsg = 'please add a valid name '
