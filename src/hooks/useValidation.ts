@@ -13,6 +13,7 @@ export interface UserValidationResult {
     value: string;
     onBlur: React.FocusEventHandler<HTMLInputElement>;
     validationMessage: string;
+    validate: () => boolean;
 }
 
 export type UseValidationShape = (props: UseValidationProps) => UserValidationResult;
@@ -36,9 +37,9 @@ export const useValidation: UseValidationShape = ({
                 [message?.context?.name || message?.type || ''] || ''
         );
 
-        console.log(result);
-
         setIsInvalid(!!message?.message);
+
+        return !!message?.message;
     }, [fieldName, value, schema]);
 
     const onChange = useCallback<React.FormEventHandler<HTMLInputElement>>((evt) => {
@@ -49,5 +50,5 @@ export const useValidation: UseValidationShape = ({
         validate();
     }, [validate]);
 
-    return { isInvalid, onBlur, onChange, value, validationMessage };
+    return { isInvalid, onBlur, onChange, value, validationMessage, validate };
 }

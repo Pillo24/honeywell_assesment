@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import styled from "styled-components";
 import { useValidation } from "../hooks/useValidation";
-import { signupSchema as schema} from "../schemas/Signup.schema";
+import { signupSchema as schema } from "../schemas/Signup.schema";
 import { FormInput } from "./FormInput/FormInput";
 
 const SignupFormWrapper = styled.form`
@@ -19,7 +19,8 @@ export const SignupForm: FC = () => {
         onBlur: onUsernameBlur,
         onChange: onUsernameChange,
         value: username,
-        validationMessage: usernameMessage
+        validationMessage: usernameMessage,
+        validate: validateUsername
     } = useValidation({ schema, fieldName: 'username' });
 
     const {
@@ -27,7 +28,8 @@ export const SignupForm: FC = () => {
         onBlur: onEmailBlur,
         onChange: onEmailChange,
         value: email,
-        validationMessage: emailMessage
+        validationMessage: emailMessage,
+        validate: validateEmail
     } = useValidation({ schema, fieldName: 'email' });
 
     const {
@@ -35,7 +37,8 @@ export const SignupForm: FC = () => {
         onBlur: onPasswordBlur,
         onChange: onPasswordChange,
         value: password,
-        validationMessage: passwordMessage
+        validationMessage: passwordMessage,
+        validate: validatePassword
     } = useValidation({ schema, fieldName: 'password' });
 
     const {
@@ -43,11 +46,21 @@ export const SignupForm: FC = () => {
         onBlur: onRepeatPasswordBlur,
         onChange: onRepeatPasswordChange,
         value: repeatPassword,
-        validationMessage: repeatPasswordMessage
+        validationMessage: repeatPasswordMessage,
+        validate: validateRepeatPassword
     } = useValidation({ schema, fieldName: 'repeatPassword' });
 
+    const submit = useCallback<React.FormEventHandler<HTMLFormElement>>((evt) => {
+        const validate = validateEmail()
+            && validateUsername()
+            && validatePassword()
+            && validateRepeatPassword();
+
+            if (!validate) evt.preventDefault();
+    }, [validateEmail, validatePassword, validateUsername, validateRepeatPassword]);
+
     return (
-        <SignupFormWrapper action="#" onSubmit={() => {}}>
+        <SignupFormWrapper action="#" onSubmit={submit}>
             <FormInput
                 id="username"
                 isInvalid={isUsernameInvalid}
@@ -109,6 +122,7 @@ export const SignupForm: FC = () => {
             >
                 Repeat password should be the same as password field
             </FormInput>
+            <button type="submit">Sign up!</button>
         </SignupFormWrapper>
     );
 };
