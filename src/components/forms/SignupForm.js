@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Title, BodyText } from '../typography'
 import TextField from '../inputs/TextField'
 import { Button, Anchor } from '../buttons'
-import { validateEmail, validatePassword } from '../inputs/Validations'
+import { validateEmail, validatePassword, validateName } from '../inputs/Validations'
 
 const SignupForm = ({ setActiveScreen, setCreateUser, handleSignup, createUser }) => {
   const [isBlocked, setIsBlocked] = useState(true)
@@ -12,7 +12,7 @@ const SignupForm = ({ setActiveScreen, setCreateUser, handleSignup, createUser }
   const [isValidPassword, setIsValidPassword] = useState(false)
   useEffect(() => {
     const validations = async () => {
-      if (isValidEmail && isValidPassword & isValidName) {
+      if (isValidEmail && isValidPassword && isValidName) {
         setIsBlocked(false)
       } else {
         setIsBlocked(true)
@@ -23,8 +23,8 @@ const SignupForm = ({ setActiveScreen, setCreateUser, handleSignup, createUser }
   }, [createUser])
 
   const handleName = (e) => {
-    const name = e.target.value
-    setIsValidName(name !== '' && name.length >= 3)
+    const name = validateName(e.target.value)
+    setIsValidName(name)
     setCreateUser((prev) => ({ ...prev, name: e.target.value }))
   }
 
