@@ -16,8 +16,15 @@ export const BodyText = styled.p`
   ${Margins}
 `
 export const MainTitle = styled.h2`
+  animation: flip 5s infinite;
+  animation-delay: calc(2s);
   color: ${(props) => props.color};
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-size: ${(props) => props.fontSize};
   ${Margins}
+  @keyframes flip {
+    0%,30% {
+      transform: rotateX(360deg) 
+    }
+  }
 `
