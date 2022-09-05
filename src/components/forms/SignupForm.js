@@ -79,7 +79,7 @@ const SignupForm = ({ setActiveScreen, setCreateUser, handleSignup, createUser }
         maxLength="16"
         value={createUser?.password ? createUser?.password : ''}
         error={createUser?.password ? isValidPassword : true}
-        errorMessage="Password must be between 6 and 16 characters"
+        errorMessage="Password must have minimum 8 characters, starts with letter, at least one letter lowercase, at least one letter uppercase, one number and one special character, no spaces"
         onChange={handlePassword}
       />
       <Button color="primary" marginBottom="1em" onClick={handleSignup} isBlocked={isBlocked} disabled={isBlocked}>

@@ -56,7 +56,7 @@ const LoginForm = ({ setActiveScreen, userData, setUserData, handleLogin }) => {
         marginTop="0em"
         maxLength="16"
         error={userData?.password ? isValidPassword : true}
-        errorMessage="Password must be between 6 and 16 characters"
+        errorMessage="Password must have minimum 8 characters, starts with letter, at least one letter lowercase, at least one letter uppercase, one number and one special character, no spaces"
         value={userData?.password ? userData?.password : ''}
         onChange={handlePassword}
       />

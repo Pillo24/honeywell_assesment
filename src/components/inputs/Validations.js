@@ -4,6 +4,6 @@ export const validateEmail = (email) => {
 }
 
 export const validatePassword = (password) => {
-  const isValid = password.length >= 6 && password.length <= 16
+  const isValid = password.match(/^(?=[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/)
   return isValid
 }
