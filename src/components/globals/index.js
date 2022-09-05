@@ -7,4 +7,5 @@ export const Margins = css`
   margin-bottom: ${(props) => props.marginBottom};
 `
 
-export const primaryColor = '#0071b3'
+export const primaryColor = 'rgba(0, 113, 179, 1)'
+export const primaryColorBlocked = 'rgba(0, 113, 179, .5)'
