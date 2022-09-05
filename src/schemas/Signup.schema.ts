@@ -59,7 +59,7 @@ export const signupSchema = Joi.object({
                     return helper.error("sequential.chars");
                 }
             }
-            return true;
+            return value;
         }, "Non sequential characters"),
     repeatPassword: Joi.ref("password")
 });

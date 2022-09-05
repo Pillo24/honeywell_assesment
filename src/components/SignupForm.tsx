@@ -2,6 +2,7 @@ import React, { FC, useCallback } from "react";
 import styled from "styled-components";
 import { useValidation } from "../hooks/useValidation";
 import { signupSchema as schema } from "../schemas/Signup.schema";
+import { FormButton } from "./FormButton/FormButton";
 import { FormInput } from "./FormInput/FormInput";
 
 const SignupFormWrapper = styled.form`
@@ -48,7 +49,7 @@ export const SignupForm: FC = () => {
         value: repeatPassword,
         validationMessage: repeatPasswordMessage,
         validate: validateRepeatPassword
-    } = useValidation({ schema, fieldName: 'repeatPassword' });
+    } = useValidation({ schema, fieldName: 'repeatPassword', context: { password } });
 
     const submit = useCallback<React.FormEventHandler<HTMLFormElement>>((evt) => {
         const validate = validateEmail()
@@ -122,7 +123,7 @@ export const SignupForm: FC = () => {
             >
                 Repeat password should be the same as password field
             </FormInput>
-            <button type="submit">Sign up!</button>
+            <FormButton type="submit">Sign up!</FormButton>
         </SignupFormWrapper>
     );
 };

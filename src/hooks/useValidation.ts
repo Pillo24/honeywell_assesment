@@ -5,6 +5,7 @@ import { SignupErrorMessages } from '../schemas/Signup.schema';
 export interface UseValidationProps {
     schema: ObjectSchema;
     fieldName: string;
+    context?: any;
 }
 
 export interface UserValidationResult {
@@ -21,13 +22,14 @@ export type UseValidationShape = (props: UseValidationProps) => UserValidationRe
 export const useValidation: UseValidationShape = ({
     schema,
     fieldName,
+    context,
 }) => {
     const [value, setValue] = useState("");
     const [isInvalid, setIsInvalid] = useState(false);
     const [validationMessage, setValidationMessage] = useState("");
 
     const validate = useCallback(() => {
-        const result = schema.validate({ [fieldName]: value }, { abortEarly: false });
+        const result = schema.validate({ [fieldName]: value, ...context }, { abortEarly: false });
 
         const message = result.error?.details.find((details) => details.path.includes(fieldName));
 
@@ -40,7 +42,7 @@ export const useValidation: UseValidationShape = ({
         setIsInvalid(!!message?.message);
 
         return !!message?.message;
-    }, [fieldName, value, schema]);
+    }, [fieldName, value, schema, context]);
 
     const onChange = useCallback<React.FormEventHandler<HTMLInputElement>>((evt) => {
         setValue((evt.target as HTMLInputElement).value);
