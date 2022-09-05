@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components'
 import bg from '../../assets/images/bg.webp'
+import buildings from '../../assets/images/buildings.jpeg'
+import inventions from '../../assets/images/inventions.webp'
+import airplane from '../../assets/images/airplane.webp'
 
 const margins = css`
   margin-top: ${(props) => props.marginTop};
@@ -7,6 +10,18 @@ const margins = css`
   margin-right: ${(props) => props.marginRight};
   margin-bottom: ${(props) => props.marginBottom};
 `
+
+const handleBackground = (view) => {
+  switch (view) {
+    case 'login':
+      return bg
+    case 'signup':
+      return buildings
+    case 'logged':
+      return airplane
+    default: return inventions
+  }
+}
 
 export const Container = styled.div`
   background-color: #fff;
@@ -52,7 +67,7 @@ export const Box = styled.div`
 export const BoxTitle = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: ${(props) => props.view === 'login' ? '30%' : '55%'};
   @media (max-width: 500px) {
     width: 100%;
   }
@@ -62,15 +77,14 @@ export const BoxLogo = styled.div`
   display: flex;
   width: 25%;
   @media (max-width: 500px) {
-    align-self: flex-start;
+    align-self: ${(props) => props.view === 'login' ? 'flex-start' : 'flex-end'};;
     width: 30%;
   }
 `
 
 export const BoxInfo = styled.div`
   align-items: baseline;
-  //background-image: linear-gradient(to right top, #726bd1, #7277d7, #7383dc, #778fe0, #7c9ae3, #74a7ec, #6db3f3, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
-  background-image: url(${bg});
+  background-image: url(${(props) => handleBackground(props.view)});
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -79,6 +93,7 @@ export const BoxInfo = styled.div`
   display: flex;
   flex-basis: 50%;
   flex-direction: column;
+  max-height: 500px;
   justify-content: flex-start;
   ${margins};
   padding: 1em 2em;
@@ -87,6 +102,7 @@ export const BoxInfo = styled.div`
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   @media (max-width: 500px) {
+    border-radius: 0 0 10px 10px;
     flex-basis: 30%;
   }
 `
