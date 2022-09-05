@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { useValidation } from "../hooks/useValidation";
 import { signupSchema as schema } from "../schemas/Signup.schema";
@@ -12,9 +12,22 @@ box-sizing: border-box;
 padding: 24px;
 border-radius: 12px;
 box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+h1 {
+    text-align: center;
+}
 `;
 
-export const SignupForm: FC = () => {
+export interface SignupResult {
+    username: string;
+    email: string;
+    password: string;
+}
+
+export interface SignupFormProps {
+    onSubmit: (result: SignupResult) => void;
+}
+
+export const SignupForm: FC<SignupFormProps> = ({ onSubmit }) => {
     const {
         isInvalid: isUsernameInvalid,
         onBlur: onUsernameBlur,
@@ -51,17 +64,23 @@ export const SignupForm: FC = () => {
         validate: validateRepeatPassword
     } = useValidation({ schema, fieldName: 'repeatPassword', context: { password } });
 
-    const submit = useCallback<React.FormEventHandler<HTMLFormElement>>((evt) => {
-        const validate = validateEmail()
+    const submit: React.FormEventHandler<HTMLFormElement> = (evt) => {
+        const invalid = validateEmail()
             && validateUsername()
             && validatePassword()
             && validateRepeatPassword();
 
-            if (!validate) evt.preventDefault();
-    }, [validateEmail, validatePassword, validateUsername, validateRepeatPassword]);
+        evt.preventDefault();
+        if (!invalid) onSubmit({
+            username,
+            email,
+            password
+        });
+    };
 
     return (
         <SignupFormWrapper action="#" onSubmit={submit}>
+            <h1>Sign up form!</h1>
             <FormInput
                 id="username"
                 isInvalid={isUsernameInvalid}

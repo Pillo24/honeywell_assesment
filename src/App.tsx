@@ -1,23 +1,32 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import styled from "styled-components"
+
+import { SignupForm, SignupResult } from './components/SignupForm';
+import { SuccessPage } from './components/SuccessPage';
+
+const AppWrapper = styled.main`
+width: 100vw;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+`
 
 function App() {
+  const [data, setData] = useState<SignupResult | null>(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppWrapper>
+      {
+        data ? (
+          <SuccessPage>
+            <h2>Thank you {data.username}</h2>
+            We will send an email to {data.email} soon!
+          </SuccessPage>
+        ): <SignupForm onSubmit={setData} />
+      }
+      
+    </AppWrapper>
   );
 }
 
