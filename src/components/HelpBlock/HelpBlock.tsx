@@ -22,6 +22,7 @@ padding: 8px;
 const HelpBlockButton = styled.button`
 background: transparent;
 border: none;
+cursor: pointer;
 `;
 
 export interface HelpBlockProps extends HTMLAttributes<HTMLDivElement> {
