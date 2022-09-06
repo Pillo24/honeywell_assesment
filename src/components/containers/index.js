@@ -28,7 +28,7 @@ export const Container = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 550px;
   width: 900px;
   max-width: 900px;
   -webkit-border-radius: 10px;
@@ -93,7 +93,7 @@ export const BoxInfo = styled.div`
   display: flex;
   flex-basis: 50%;
   flex-direction: column;
-  max-height: 500px;
+  max-height: 550px;
   justify-content: flex-start;
   ${margins};
   padding: 1em 2em;
