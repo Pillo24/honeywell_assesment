@@ -1,0 +1,15 @@
+.input_container {
+  input {
+  }
+  input:invalid[focused="true"] ~ span {
+    display: block;
+  }
+  input:invalid[focused="true"] {
+    border: 1px solid red;
+  }
+  span {
+    color: red;
+    font-size: 14px;
+    display: none;
+  }
+}
