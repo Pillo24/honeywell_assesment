@@ -1,28 +1,35 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap");
 .App {
   text-align: center;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-image: linear-gradient(
+    to left,
+    #141414,
+    #1b1b1b,
+    #222222,
+    #292929,
+    #303030
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Inter", sans-serif;
+  font-family: "Open Sans", sans-serif;
   .title {
     font-size: calc(10px + 2vmin);
     margin-bottom: 20px;
+    color: #fff;
   }
 
   .box {
     display: flex;
     border-radius: 8px;
     position: relative;
-    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px,
-      rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px,
-      rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+    /*box-shadow: rgba(88, 231, 243, 0.4) -5px 5px,
+      rgba(88, 231, 243, 0.3) -10px 10px, rgba(88, 231, 243, 0.2) -15px 15px,
+      rgba(88, 231, 243, 0.1) -20px 20px, rgba(88, 231, 243, 0.05) -25px 25px;*/
     .form_container {
-      border-radius: 8px;
+      border-radius: 8px 0 0 8px;
       background-color: #f5f5f5;
       padding: 20px;
       .form_container_title {
@@ -33,10 +40,21 @@
         font-size: calc(10px + 0.5vmin);
       }
     }
-    .content_container {
-      width: 300px;
-      background: linear-gradient(to right, #8360c3, #2ebf91);
+    .right_site_container {
+      background-color: #f5b700;
       border-radius: 0 8px 8px 0;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .quote_container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        padding: 20px;
+      }
     }
   }
 }

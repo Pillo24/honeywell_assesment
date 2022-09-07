@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./FormInput.module.scss";
+import { motion } from "framer-motion";
 
 export default function FormInput({
   label,
@@ -15,14 +16,28 @@ export default function FormInput({
 
   return (
     <div className={styles.input_container}>
-      <label htmlFor="">{label}</label>
+      <label htmlFor={inputProps.name} className="label-name">
+        {label}
+      </label>
       <input
         {...inputProps}
         onChange={onChange}
         onBlur={handleFocus}
         focused={focused.toString()}
       />
-      <span>{errMessage}</span>
+
+      <motion.span
+        animate={{
+          x: [0, 5, -5, 5, 0],
+        }}
+        transition={{
+          duration: 0.5,
+          repeat: Infinity,
+          repeatDelay: 2,
+        }}
+      >
+        {errMessage}
+      </motion.span>
     </div>
   );
 }

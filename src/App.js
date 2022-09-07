@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.scss";
 import FormInput from "./components/FormInput";
+import CanvasContainer from "./components/CanvasContainer";
+import { motion } from "framer-motion";
 
 function App() {
   const [values, setValues] = useState({
@@ -9,7 +11,7 @@ function App() {
     password: "",
     confirmPassword: "",
   });
-
+  console.log(values);
   const inputs = [
     {
       id: 1,
@@ -34,10 +36,10 @@ function App() {
     {
       id: 3,
       name: "password",
-      type: "password",
+      type: "text",
       placeholder: "Password",
       label: "Password",
-      pattern: "^[A-Za-z0-9]{3,16}$",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       errMessage:
         "Password should contain at least 1 letter, 1 number and 1 special character",
       required: true,
@@ -45,7 +47,7 @@ function App() {
     {
       id: 4,
       name: "confirmPassword",
-      type: "password",
+      type: "text",
       placeholder: "Confirm Password",
       label: "Confirm Password",
       errMessage: "Password don't match",
@@ -68,9 +70,13 @@ function App() {
       <div className="title">
         <strong>Sing up</strong> form
       </div>
-      <div className="box">
+      <motion.div
+        className="box"
+        initial={{ x: 200, rotate: [45] }}
+        animate={{ x: 0, rotate: 0 }}
+      >
         <div className="form_container">
-          <div className="form_container_title">Register</div>
+          {/*<div className="form_container_title">Register</div>*/}
           <form onSubmit={handleSubmit}>
             {inputs.map((input) => (
               <FormInput
@@ -89,8 +95,14 @@ function App() {
             <button>Submit</button>
           </form>
         </div>
-        <div className="content_container">hola</div>
-      </div>
+        <div className="right_site_container">
+          <div className="quote_container">
+            Register and meet with a product consultant to see how we can solve
+            your exact needs
+          </div>
+          <CanvasContainer />
+        </div>
+      </motion.div>
     </div>
   );
 }
