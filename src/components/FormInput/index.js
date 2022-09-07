@@ -9,18 +9,31 @@ export default function FormInput({
   ...inputProps
 }) {
   const [focused, setFocused] = useState(false);
+  const [passwordHidden, setPasswordHidden] = useState(true);
 
   const handleFocus = (e) => {
     setFocused(true);
   };
 
+  const handleEyeClick = () => {
+    setPasswordHidden(!passwordHidden);
+  };
   return (
     <div className={styles.input_container}>
       <label htmlFor={inputProps.name} className="label-name">
         {label}
+        {inputProps.name === "password" ? (
+          <img
+            onClick={handleEyeClick}
+            className={styles.icono_ocultar_password}
+            src="./static/images/eye.png"
+            alt="eye"
+          />
+        ) : null}
       </label>
       <input
         {...inputProps}
+        type={passwordHidden ? inputProps.type : "text"}
         onChange={onChange}
         onBlur={handleFocus}
         focused={focused.toString()}
