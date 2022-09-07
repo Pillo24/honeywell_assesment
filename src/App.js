@@ -70,7 +70,7 @@ function App() {
   return (
     <div className="App">
       <div className="title">
-        <strong>Sing up</strong> form
+        <strong>Sign up</strong> form
       </div>
       <motion.div
         className="box"
