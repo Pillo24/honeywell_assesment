@@ -21,7 +21,7 @@ function App() {
     // </div>
     <Container
       sx={{
-        border: '1px solid red',
+        // border: '1px solid red',
         // backgroundColor: 'peachpuff',
         height: '100vh',
         display: 'flex',

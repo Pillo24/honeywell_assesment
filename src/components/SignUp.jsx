@@ -4,10 +4,10 @@ import {
   Email,
   Key,
   Person,
-  Send,
   Visibility,
+  VisibilityOff,
 } from '@mui/icons-material';
-import { Avatar, Button, Grid, TextField } from '@mui/material';
+import { Avatar, Button, Grid, IconButton, TextField } from '@mui/material';
 
 const initialUserAcount = {
   username: '',
@@ -18,11 +18,14 @@ const initialUserAcount = {
 
 const SignUp = () => {
   const [newAccountData, setNewAccountData] = useState(initialUserAcount);
+  const [dirtys, setDirtys] = useState([]);
+  const [visiblePasswd, setVisiblePasswd] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(JSON.stringify(newAccountData, null, 2));
     setNewAccountData(initialUserAcount); // Clean form
   };
+
   const handleUserData = (e) => {
     // setNewAccountData({
     //   ...newAccountData,
@@ -30,33 +33,15 @@ const SignUp = () => {
     // });
   };
 
-  // useEffect(() => {
-  //   first
-
-  //   return () => {
-  //     second
-  //   }
-  // }, [third])
-
-  console.log(newAccountData);
-
   return (
-    <Grid
-      container
-      sx={{ border: '1px solid blue' }}
-      display={'flex'}
-      justifyContent={'center'}
-    >
-      {/* <div>SignUp</div> */}
+    <Grid container display={'flex'} justifyContent={'center'}>
       <Avatar>
         <Person fontSize="large" />
       </Avatar>
 
-      {/* <Icon>arrow</Icon> */}
       <form onSubmit={handleSubmit}>
         <Grid
           container
-          sx={{ border: '1px solid red' }}
           spacing={2}
           display={'felx'}
           //   justifyItems="center"
@@ -69,16 +54,17 @@ const SignUp = () => {
               type={'text'}
               name="username"
               //   onChange={handleUserData}
-              onChange={(e) =>
+              onChange={(e) => {
                 setNewAccountData({
                   ...newAccountData,
                   username: e.target.value
-                    .replace(/[^a-zA-Z ]/g, '')
+                    .replace(/[^a-zA-Z0-9 ]/g, '')
                     .split(' ')
                     .join('')
                     .toLowerCase(),
-                })
-              }
+                });
+                setDirtys([...dirtys, 'username']);
+              }}
               value={newAccountData.username || ''}
               fullWidth
               required
@@ -92,51 +78,103 @@ const SignUp = () => {
               id="email"
               type={'email'}
               name="email"
-              onChange={
-                (e) => {}
-                // setNewAccountData({
-                //   ...newAccountData,
-                //   email: e.target.value.match(
-                //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                //   ),
-                // })
-              }
+              onChange={(e) => {
+                setNewAccountData({
+                  ...newAccountData,
+                  email: e.target.value.toLowerCase(),
+                });
+                setDirtys([...dirtys, 'email']);
+              }}
               value={newAccountData.email || ''}
               fullWidth
               required
               InputProps={{ startAdornment: <Email /> }}
               placeholder=" Please enter a valid email."
+              helperText={
+                dirtys.includes('email') &&
+                !newAccountData.email.match(
+                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+                ) &&
+                'Invalid Email'
+              }
+              error={
+                dirtys.includes('email') &&
+                !newAccountData.email.match(
+                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+                )
+              }
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               label="Password"
               id="password"
-              type={'password'}
+              type={visiblePasswd ? 'text' : 'password'}
               name="password"
-              onChange={handleUserData}
+              onChange={(e) => {
+                setNewAccountData({
+                  ...newAccountData,
+                  password: e.target.value,
+                });
+                setDirtys([...dirtys, 'password']);
+              }}
               value={newAccountData.password || ''}
               fullWidth
               required
-              InputProps={{ startAdornment: <Key /> }}
-              placeholder=" Should have at lease 8 characteres, capitals and special characters. "
+              InputProps={{
+                startAdornment: <Key />,
+                endAdornment: (
+                  <IconButton onClick={() => setVisiblePasswd(!visiblePasswd)}>
+                    {visiblePasswd ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                ),
+              }}
+              helperText={
+                dirtys.includes('password') &&
+                !newAccountData.password.match(
+                  /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])$/
+                ) &&
+                'Should have at least 8 characteres, capitals and special characters.'
+              }
+              error={
+                dirtys.includes('password') &&
+                !newAccountData.password.match(
+                  /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])$/
+                )
+              }
+              placeholder=" Should have at least 8 characteres, capitals and special characters. "
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               label="Confirm Password"
               id="confirmPassword"
-              type={'password'}
+              type={visiblePasswd ? 'text' : 'password'}
               name="confirmPassword"
-              onChange={handleUserData}
+              onChange={(e) => {
+                setNewAccountData({
+                  ...newAccountData,
+                  confirmPassword: e.target.value,
+                });
+                setDirtys([...dirtys, 'confirmPassword']);
+              }}
               value={newAccountData.confirmPassword || ''}
               fullWidth
               required
-              InputProps={{
-                startAdornment: <Key />,
-                endAdornment: <Visibility />,
-              }}
-              placeholder=" Should have at lease 8 characteres, capitals and special characters. "
+              InputProps={{ startAdornment: <Key /> }}
+              placeholder=" Should have at least 8 characteres, capitals and special characters. "
+              helperText={
+                (dirtys.includes('confirmPassword') &&
+                  newAccountData.confirmPassword.length < 8 &&
+                  'Should have at least 8 characteres, capitals and special characters.') ||
+                (newAccountData.password !== newAccountData.confirmPassword &&
+                  'Password not match')
+              }
+              error={
+                (dirtys.includes('confirmPassword') &&
+                  newAccountData.password !== newAccountData.confirmPassword) ||
+                newAccountData.confirmPassword.length < 8
+              }
             />
           </Grid>
           <Grid item xs={12}>
