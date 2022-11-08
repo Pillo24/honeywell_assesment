@@ -7,7 +7,14 @@ import {
   Visibility,
   VisibilityOff,
 } from '@mui/icons-material';
-import { Avatar, Button, Grid, IconButton, TextField } from '@mui/material';
+import { Avatar, Button, Grid, IconButton } from '@mui/material';
+
+import signUpSchema, {
+  emailSchema,
+  passwordSchema,
+  usernameSchema,
+} from '../schemas/signUpSchema';
+import Input from '../ui/Input/Input';
 
 const initialUserAcount = {
   username: '',
@@ -20,17 +27,33 @@ const SignUp = () => {
   const [newAccountData, setNewAccountData] = useState(initialUserAcount);
   const [dirtys, setDirtys] = useState([]);
   const [visiblePasswd, setVisiblePasswd] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(JSON.stringify(newAccountData, null, 2));
     setNewAccountData(initialUserAcount); // Clean form
   };
 
-  const handleUserData = (e) => {
-    // setNewAccountData({
-    //   ...newAccountData,
-    //   [e.currentTarget.name]: e.target.value,
-    // });
+  const handleInputChange = (e) => {
+    setNewAccountData({
+      ...newAccountData,
+      [e.currentTarget.name]: e.target.value,
+    });
+    setDirtys([...dirtys, e.currentTarget.name]);
+  };
+
+  const buttonIsDisabled = () => {
+    if (dirtys.length === 0) return true;
+
+    if (newAccountData.password !== newAccountData.confirmPassword) {
+      return true;
+    }
+
+    if (!!signUpSchema.validate(newAccountData).error) {
+      return true;
+    }
+
+    return false;
   };
 
   return (
@@ -48,137 +71,77 @@ const SignUp = () => {
           justifyContent="center"
         >
           <Grid item xs={12}>
-            <TextField
+            <Input
               label="Username"
               id="username"
-              type={'text'}
-              name="username"
-              //   onChange={handleUserData}
-              onChange={(e) => {
-                setNewAccountData({
-                  ...newAccountData,
-                  username: e.target.value
-                    .replace(/[^a-zA-Z0-9 ]/g, '')
-                    .split(' ')
-                    .join('')
-                    .toLowerCase(),
-                });
-                setDirtys([...dirtys, 'username']);
-              }}
-              value={newAccountData.username || ''}
-              fullWidth
-              required
-              InputProps={{ startAdornment: <AccountBox /> }}
-              placeholder=" Please enter your username"
+              placeholder="Please enter your username"
+              onChange={handleInputChange}
+              value={newAccountData.username}
+              schema={usernameSchema}
+              startAdornment={<AccountBox />}
+              isDirty={dirtys.includes('username')}
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
+            <Input
               label="Email"
               id="email"
-              type={'email'}
-              name="email"
-              onChange={(e) => {
-                setNewAccountData({
-                  ...newAccountData,
-                  email: e.target.value.toLowerCase(),
-                });
-                setDirtys([...dirtys, 'email']);
-              }}
-              value={newAccountData.email || ''}
-              fullWidth
-              required
-              InputProps={{ startAdornment: <Email /> }}
-              placeholder=" Please enter a valid email."
-              helperText={
-                dirtys.includes('email') &&
-                !newAccountData.email.match(
-                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-                ) &&
-                'Invalid Email'
-              }
-              error={
-                dirtys.includes('email') &&
-                !newAccountData.email.match(
-                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-                )
-              }
+              type="email"
+              placeholder="Please enter your email"
+              onChange={handleInputChange}
+              value={newAccountData.email}
+              schema={emailSchema}
+              startAdornment={<Email />}
+              isDirty={dirtys.includes('email')}
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
+            <Input
               label="Password"
               id="password"
               type={visiblePasswd ? 'text' : 'password'}
-              name="password"
-              onChange={(e) => {
-                setNewAccountData({
-                  ...newAccountData,
-                  password: e.target.value,
-                });
-                setDirtys([...dirtys, 'password']);
-              }}
-              value={newAccountData.password || ''}
-              fullWidth
-              required
-              InputProps={{
-                startAdornment: <Key />,
-                endAdornment: (
-                  <IconButton onClick={() => setVisiblePasswd(!visiblePasswd)}>
-                    {visiblePasswd ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                ),
-              }}
-              helperText={
-                dirtys.includes('password') &&
-                !newAccountData.password.match(
-                  /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])$/
-                ) &&
-                'Should have at least 8 characteres, capitals and special characters.'
+              placeholder="Please enter your password"
+              onChange={handleInputChange}
+              value={newAccountData.password}
+              schema={passwordSchema}
+              startAdornment={<Key />}
+              endAdornment={
+                <IconButton onClick={() => setVisiblePasswd(!visiblePasswd)}>
+                  {visiblePasswd ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
               }
-              error={
-                dirtys.includes('password') &&
-                !newAccountData.password.match(
-                  /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])$/
-                )
-              }
-              placeholder=" Should have at least 8 characteres, capitals and special characters. "
+              isDirty={dirtys.includes('password')}
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
+            <Input
               label="Confirm Password"
               id="confirmPassword"
               type={visiblePasswd ? 'text' : 'password'}
-              name="confirmPassword"
-              onChange={(e) => {
-                setNewAccountData({
-                  ...newAccountData,
-                  confirmPassword: e.target.value,
-                });
-                setDirtys([...dirtys, 'confirmPassword']);
-              }}
-              value={newAccountData.confirmPassword || ''}
-              fullWidth
-              required
-              InputProps={{ startAdornment: <Key /> }}
-              placeholder=" Should have at least 8 characteres, capitals and special characters. "
-              helperText={
-                (dirtys.includes('confirmPassword') &&
-                  newAccountData.confirmPassword.length < 8 &&
-                  'Should have at least 8 characteres, capitals and special characters.') ||
-                (newAccountData.password !== newAccountData.confirmPassword &&
-                  'Password not match')
+              placeholder="Please Confirm Password"
+              onChange={handleInputChange}
+              value={newAccountData.confirmPassword}
+              schema={passwordSchema}
+              startAdornment={<Key />}
+              endAdornment={
+                <IconButton onClick={() => setVisiblePasswd(!visiblePasswd)}>
+                  {visiblePasswd ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
               }
-              error={
-                (dirtys.includes('confirmPassword') &&
-                  newAccountData.password !== newAccountData.confirmPassword) ||
-                newAccountData.confirmPassword.length < 8
+              isDirty={dirtys.includes('confirmPassword')}
+              customMessage={
+                newAccountData.password !== newAccountData.confirmPassword &&
+                `Password doesn't match`
               }
             />
           </Grid>
           <Grid item xs={12}>
-            <Button variant="contained" onClick={handleSubmit} fullWidth>
+            <Button
+              variant="contained"
+              onClick={handleSubmit}
+              fullWidth
+              disabled={buttonIsDisabled()}
+            >
               Create Account
             </Button>
           </Grid>
