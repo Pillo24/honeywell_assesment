@@ -3,18 +3,19 @@ import {
   AccountBox,
   Email,
   Key,
-  Person,
   Visibility,
   VisibilityOff,
 } from '@mui/icons-material';
-import { Avatar, Button, Grid, IconButton } from '@mui/material';
+import { Button, Grid, IconButton } from '@mui/material';
 
 import signUpSchema, {
   emailSchema,
   passwordSchema,
   usernameSchema,
-} from '../schemas/signUpSchema';
-import Input from '../ui/Input/Input';
+} from '../../schemas/signUpSchema';
+import Input from '../../ui/Input/Input';
+import SignUpHeader from './SignUpHeader';
+import SignUpFooter from './SignUpFooter';
 
 const initialUserAcount = {
   username: '',
@@ -23,7 +24,7 @@ const initialUserAcount = {
   confirmPassword: '',
 };
 
-const SignUp = () => {
+const SignUpForm = () => {
   const [newAccountData, setNewAccountData] = useState(initialUserAcount);
   const [dirtys, setDirtys] = useState([]);
   const [visiblePasswd, setVisiblePasswd] = useState(false);
@@ -58,18 +59,10 @@ const SignUp = () => {
 
   return (
     <Grid container display={'flex'} justifyContent={'center'}>
-      <Avatar>
-        <Person fontSize="large" />
-      </Avatar>
+      <SignUpHeader />
 
       <form onSubmit={handleSubmit}>
-        <Grid
-          container
-          spacing={2}
-          display={'felx'}
-          //   justifyItems="center"
-          justifyContent="center"
-        >
+        <Grid container spacing={2} display="felx" justifyContent="center">
           <Grid item xs={12}>
             <Input
               label="Username"
@@ -147,8 +140,9 @@ const SignUp = () => {
           </Grid>
         </Grid>
       </form>
+      <SignUpFooter />
     </Grid>
   );
 };
 
-export default SignUp;
+export default SignUpForm;

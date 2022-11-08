@@ -1,20 +1,19 @@
 import { Container } from '@mui/material';
 import './App.css';
-import SignUp from './components/SignUp';
+
+import SignUpLayout from './components/SignUp/SignUpLayout';
 
 function App() {
   return (
     <Container
       sx={{
-        // border: '1px solid red',
-        // backgroundColor: 'peachpuff',
         height: '100vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
       }}
     >
-      <SignUp />
+      <SignUpLayout />
     </Container>
   );
 }
