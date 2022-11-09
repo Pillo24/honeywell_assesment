@@ -110,4 +110,79 @@ describe('Sign Up Form', () => {
       expect(elem).toHaveTextContent('"value" must be a valid email');
     });
   });
+
+  describe('Password Field', () => {
+    test('should not display error if password is ok', () => {
+      //Arrange
+      render(<SignUpForm />);
+      // Act
+      const inputs = screen.getAllByLabelText(/password/i);
+      fireEvent.change(inputs[0], {
+        // target: { value: 'p@ssw0rD01A' },
+        target: { value: 'p@ssw0rD' },
+      });
+      const elems = screen.queryAllByTestId(/password-helper/i);
+      // Assert
+      expect(elems).toEqual([]);
+    });
+    test('should be a required field', () => {
+      //Arrange
+      render(<SignUpForm />);
+      // Act
+      const inputs = screen.getAllByLabelText(/password/i);
+      fireEvent.change(inputs[0], {
+        target: { value: 'p@ssw0rD' },
+      });
+      fireEvent.change(inputs[0], {
+        target: { value: '' },
+      });
+      const elem = screen.queryByTestId(/password-helper/i);
+      // Assert
+      expect(elem).toHaveTextContent('"value" is not allowed to be empty');
+    });
+    test(`should have minimum 8 characters, 
+      and at least one capital letter, special character
+      and number.`, () => {
+      //Arrange
+      render(<SignUpForm />);
+      // Act
+      let inputs = screen.getAllByLabelText(/password/i);
+      fireEvent.change(inputs[0], {
+        target: { value: 'Passw0rde' },
+      });
+      let elem = screen.queryByTestId(/password-helper/i);
+
+      // Assert
+      expect(elem).toHaveTextContent(
+        'Capitals and special characters are required'
+      );
+
+      inputs = screen.getAllByLabelText(/password/i);
+      fireEvent.change(inputs[0], {
+        target: { value: 'P@ssw0r' },
+      });
+      elem = screen.queryByTestId(/password-helper/i);
+      // // Assert
+      expect(elem).toHaveTextContent(
+        '"value" length must be at least 8 characters long'
+      );
+    });
+  });
+  describe('Confirm Password Field', () => {
+    test('should validate the password is equal to confirm password', () => {
+      //Arrange
+      render(<SignUpForm />);
+      // Act
+      const inputs = screen.getAllByLabelText(/password/i);
+      fireEvent.change(inputs[0], {
+        target: { value: 'P@ssw0rD1' },
+      });
+      fireEvent.change(inputs[1], {
+        target: { value: 'P@ssw0rD2' },
+      });
+      const elem = screen.queryByTestId(/confirmPassword-helper/i);
+      // Assert
+      expect(elem).toHaveTextContent(`Password doesn't match`);
+    });
+  });
 });
