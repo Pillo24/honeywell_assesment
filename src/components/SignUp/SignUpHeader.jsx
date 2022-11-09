@@ -21,7 +21,7 @@ const SignUpHeader = () => {
         variant="body1"
         align="center"
         color={'GrayText'}
-        sx={{ marginBottom: 4 }}
+        sx={{ marginBottom: 4, mt: 4 }}
       >
         Enter the fields below to get started
       </Typography>

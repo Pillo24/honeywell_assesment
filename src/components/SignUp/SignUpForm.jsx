@@ -24,15 +24,17 @@ const initialUserAcount = {
   confirmPassword: '',
 };
 
-const SignUpForm = () => {
+const SignUpForm = ({ isOpenDialog, accountData }) => {
   const [newAccountData, setNewAccountData] = useState(initialUserAcount);
   const [dirtys, setDirtys] = useState([]);
   const [visiblePasswd, setVisiblePasswd] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(JSON.stringify(newAccountData, null, 2));
-    setNewAccountData(initialUserAcount); // Clean form
+    // alert(JSON.stringify(newAccountData, null, 2));
+    // console.log(newAccountData);
+    accountData(newAccountData);
+    isOpenDialog();
   };
 
   const handleInputChange = (e) => {

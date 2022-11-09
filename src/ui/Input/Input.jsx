@@ -33,6 +33,7 @@ const Input = ({
       InputProps={{ startAdornment, endAdornment }}
       helperText={messageError}
       error={!!messageError}
+      FormHelperTextProps={{ 'data-testid': `${id}-helper` }}
     />
   );
 };
