@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import './bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
+import { HoneywellTest } from './components/HoneywellTest';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <HoneywellTest />
   </React.StrictMode>
 );
 
